@@ -27,7 +27,7 @@ app.get('/ranking', (req, res) => {
     res.render('ranking')
 })
 
-app.get('/homes', (req, res) => {
+app.get('/home', (req, res) => {
     res.render('home');
 })
 
