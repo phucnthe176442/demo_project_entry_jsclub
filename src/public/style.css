@@ -1,0 +1,384 @@
+body {
+    margin: 0;
+}
+
+
+/* header */
+.header {
+    height: 10vh;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav_item {
+    padding: 0 20px 0 20px;
+    margin: 0;
+    margin-left: 30px;
+    display: flex;
+    list-style: none;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_logo { 
+    display: flex;
+    flex-direction: column;
+
+    font-size: small;
+    align-items: center;
+}
+
+.logo{
+    height: 7vh;
+    width: 8vh;
+    padding: 0;
+}
+
+.nav_home {
+    font-size: 18px;
+    margin: 0 0 0 50px;
+    padding: 0 10px 0 10px;
+    background-clip: padding-box;
+}
+
+.nav_ranking {
+    font-size: 18px;
+    padding: 0 10px 0 10px;
+}
+
+.nav_home:hover, .nav_ranking:hover {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #bcbbbb;
+}
+
+.has_drop_bar:hover .drop_bar{
+    display: block;
+}
+
+.has_drop_bar {     
+    margin-right: 30px;
+    position: relative;
+}
+
+#avatar {
+    height: 6vh;
+    width: 6vh;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.nav_username {
+    padding-right: 10px;
+}
+
+.drop_bar {
+    width: 100px;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 92%;
+
+    display: none;
+
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 2px;
+}
+
+.drop_bar li {
+    display: block;
+    padding: 5px 5px 5px 5px;
+    background-color: #CDCDC3;  
+
+    border: 1px solid white;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.drop_bar li:hover {
+    background-color: #dad7d7;
+}
+
+
+/* footer */
+.footer {
+    height: 12vh;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.nav_item_footer1, .nav_item_footer2 {
+    justify-content: center;
+    list-style:none;
+    display: flex;
+    margin: 0;
+}
+
+.nav_item_footer1 {
+    margin-top: 23px;
+}
+
+.nav_item_footer1 li {
+    padding: 0 10px 0px 10px;
+    margin: 0 0 7px 0;
+}
+
+.nav_item_footer2 li {
+    padding: 0 2px 0 2px;
+}
+
+.icon {
+    height: 10px;
+    width: 10px;
+    padding-bottom: 3px;
+}
+
+#ctv {
+    font-size: 12px;
+}
+
+#logo_footer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    padding-left: 13px;
+
+    font-size: small;
+}
+
+.nav_item_footer1_and_2 {
+    margin-top: 15px;
+    flex: 8;
+    padding-right: 180px;
+}
+
+a {
+    color: #0A2749;
+    text-decoration: none; /* no underline */
+}
+
+.nav_item_footer1 li:hover {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #bcbbbb;  
+}
+
+.ranking {
+    background-color: #CDCDC3;
+    width: 60%;
+    height: 70vh;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #dad7d7;
+    height: 78vh;
+    width: 100%;
+    margin: 0;
+}
+
+.ranking_categories {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 5vh;
+}
+
+.ranking_categories li {
+    background-color: #CC922F;
+    height: 5vh;
+    display: flex;
+    border-radius: 2px;
+    /* text-align: center; */
+}
+
+.ranking_content li {
+    background-color: #CAA45D;
+    height: 3vh;
+    display: flex;
+    border-radius: 2px;
+    /* text-align: center; */
+}
+
+.rank_rank {
+    justify-content: center;
+    align-items: center;
+    flex: 0.7;
+}
+
+.username_rank {
+    box-sizing: border-box;
+    padding-left: 50px;
+    text-align: left;
+    flex: 5;
+
+    align-items: center;
+
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.score {
+    justify-content: center;
+    align-items: center;
+    flex: 1.3;
+}
+
+.ranking_content {
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+.ranking_content .username_rank {
+    padding: 0 30px 0 20px;
+}
+
+
+/* popup of the change username ui */
+.popup_change_username {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+    visibility: hidden;
+}
+
+.active_change_username {
+    visibility: visible;
+}
+
+.change_username {
+    width: 400px;
+    height: 320px;
+    background-color: #FFFFFF;
+
+    text-align: center;
+
+    padding-top: 10px;
+    margin: 0 0 10% 0;
+
+    border-radius: 20px;
+    
+}
+
+.change_username div {
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.change_username input {
+    flex: 3;
+    height: 20px;
+    background-color: #e2e1e1;
+    border: none;
+}
+
+#old_username, #new_username {
+    flex: 2;
+}
+
+#seperate {
+    flex: 0.5;
+}
+
+.btns {
+    margin-top: 20px;
+}
+
+.btns button {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 5px 20px 5px 20px;
+    border: none;
+}
+
+#cancel_username {
+    background-color: #D9D9D9;
+}
+
+#confirm {
+    color: white;
+    background-color: #1E3957;
+}
+
+/* popup of the change password ui */
+.popup_change_password {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+    visibility: hidden;
+}
+
+.active_change_password {
+    visibility: visible;
+}
+
+.change_password {
+    width: 400px;
+    height: 320px;
+    background-color: #FFFFFF;
+
+    text-align: center;
+
+    padding-top: 10px;
+    margin: 0 0 10% 0;
+
+    border-radius: 20px;
+    
+}
+
+.change_password div {
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.change_password input {
+    flex: 3;
+    height: 20px;
+    background-color: #e2e1e1;
+    border: none;
+}
+
+#old_password, #new_password {
+    flex: 2;
+}
+
+#cancel_password {
+    background-color: #D9D9D9;
+}
