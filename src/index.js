@@ -26,18 +26,17 @@ app.set('views', path.join(__dirname, 'resources/views'))
 
 app.get('/', (req, res) => {
     res.render('login');
-})
+});
+  
+app.post('/', (req, res) => {
+    const userInfo = req.body;
 
-app.get('/ranking', (req, res) => {
-    res.render('ranking')
-})
-
-app.get('/homepage', (req, res) => {
-    res.render('home');
-})
-
-app.get('/task', (req, res) => {
-    res.render('submit');
-})
+    // Authenticate user credentials
+    if (userInfo.username === 'admin' && userInfo.password === '1') {
+        res.render('home');
+    } else {
+        res.send('Invalid username or password');
+    }
+});
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
