@@ -381,6 +381,15 @@ p:hover {
   padding: 0 30px 0 20px; }
 
 /* submit */
+.container_task_and_submit {
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 60px;
+  background-color: #f6f6f6; }
+
 .problem_content {
   width: 50%;
   height: 90%;
@@ -410,7 +419,8 @@ iframe {
   background-color: #1E3957;
   margin: 0 40px 0 40px;
   padding: 5px 0 5px 0;
-  border-radius: 3px; }
+  border-radius: 3px;
+  text-decoration: none; }
 
 .submit {
   width: 15%;
