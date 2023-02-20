@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const rankingController = require('../app/controllers/RankingController');
+const rankingController = require("../app/controllers/RankingController");
 
-router.use('/', rankingController.index);
+router.get("/", rankingController.index);
 
 module.exports = router;
