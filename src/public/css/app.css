@@ -447,3 +447,14 @@ iframe {
 
 .submit div:hover {
   cursor: pointer; }
+
+/* home page*/
+.content-homepage {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center; }
+
+.submission-table,
+.task-table {
+  margin-left: 10px;
+  margin-right: 10px; }

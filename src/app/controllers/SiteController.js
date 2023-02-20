@@ -1,4 +1,5 @@
 const Task = require("../models/Task");
+const Submission = require("../models/Submission");
 
 class SiteController {
   // [GET] /
@@ -7,19 +8,20 @@ class SiteController {
       Task.find({})
         .then((tasks) => {
           tasks = tasks.map((tasks) => tasks.toObject());
+          Submission.find({})
+            .then((submissions) => {
+              submissions = submissions.map((submissions) =>
+                submissions.toObject()
+              );
+              res.render("home", {
+                username: req.session.user,
+                tasks,
+                submissions,
+              });
+            })
+            .catch((error) => next(error));
         })
         .catch((error) => next(error));
-
-      Submission.find({})
-        .then((submissions) => {
-            submissions = submissions.map((submissions) => submissions.toObject());
-        })
-        .catch((error) => next(error));
-
-      var Object = { username, tasks, susmissions };
-
-      Object.username = req.session.user;
-      res.render("home", Object);
     } else {
       res.redirect("/");
     }
