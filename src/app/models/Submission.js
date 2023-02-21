@@ -6,6 +6,7 @@ const Submission = new Schema ({
     status: { type: String },
     when: { type: Date },
     slug: { type: String },
+    user_name: { type: String }
 });
 
 module.exports = mongoose.model('Submission', Submission);
