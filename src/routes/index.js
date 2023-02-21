@@ -1,12 +1,9 @@
 const rankingRouter = require("./ranking");
 const siteRouter = require("./site");
-const taskRouter = require("./tasks");
 const session = require("express-session");
 
 function route(app) {
   app.get('/ranking', rankingRouter);
-
-  app.get('/tasks', taskRouter);
 
   app.use(
     session({
@@ -34,6 +31,7 @@ function route(app) {
     }
   });
 
+  console.log('bug')
   app.get('/homepage', siteRouter);
 }
 

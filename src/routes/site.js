@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const taskRouter = require("./tasks");
 
 const siteController = require("../app/controllers/SiteController");
 
-router.get('/homepage', siteController.index);
+console.log('bug')
+router.get('/tasks', taskRouter);
+router.get('/', siteController.index);
+
 
 module.exports = router;

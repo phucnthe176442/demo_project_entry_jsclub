@@ -12,9 +12,9 @@
       <tbody>
         {{#each tasks}}
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{@index}}</th>
             <td>
-              <a href="tasks/{{this.slug}}">
+              <a href="homepage/tasks/{{this.slug}}">
                 {{this.task_name}}
               </a>
             </td>
@@ -38,7 +38,7 @@
       <tbody>
         {{#each submissions}}
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{@index}}</th>
             <td>{{this.when}}</td>
             <td>{{this.task_name}}</td>
             <td>{{this.status}}</td>

@@ -6,20 +6,11 @@
         <li class="score">Score</li>
     </ul> 
 
+    {{#each users}}
     <ul class="ranking_content">
-        <li class="rank_rank">1</li>
-        <li class="username_rank">ai do</li>
-        <li class="score">100</li>
+        <li class="rank_rank">{{@index}}</li>
+        <li class="username_rank">{{this.user_name}}</li>
+        <li class="score">{{this.score}}</li>
     </ul>
-    <ul class="ranking_content">
-        <li class="rank_rank">2</li>
-        <li class="username_rank">ai do</li>
-        <li class="score">90</li>
-    </ul>
-
-    <ul class="ranking_content">
-        <li class="rank_rank">3</li>
-        <li class="username_rank">ai do</li>
-        <li class="score">30</li>
-    </ul>
+    {{/each}}
 </div>
