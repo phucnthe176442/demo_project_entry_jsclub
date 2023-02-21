@@ -7,7 +7,7 @@ class RankingController {
       .sort({ score: 'desc' } )
       .then((users) => {
         users = users.map((users) => users.toObject());
-        
+        // res.json(users);
         res.render('ranking', { users });
       })
       .catch((error) => next(error));
