@@ -3,16 +3,6 @@ const siteRouter = require("./site");
 const session = require("express-session");
 const User = require("../app/models/User");
 
-function checkLogin(username, password) {
-  const user = User.findOne({ user_name: username, pass_word: password })
-    .then((user) => {
-      user = user.map((user) => user.toObject());
-      return user;
-    })
-    .catch((error) => next(error));
-  return user != null;
-}
-
 function route(app) {
   app.get("/ranking", rankingRouter);
 
@@ -26,25 +16,29 @@ function route(app) {
   );
 
   app.get("/", (req, res) => {
-    res.render("login");
+    res.render('login');
   });
 
   app.post("/", (req, res) => {
     const { username, password } = req.body;
-    // TODO: check the credentials in the database
-
-    if (checkLogin(username, password) === true) {
-      req.session.user = username;
-      res.redirect("/homepage");
-    } else if (username === "admin" && password === "1") {
-      req.session.user = username;
-      res.redirect("/homepage");
-    } else {
-      res.send("Invalid username or password");
-    }
+    User.find({ user_name: username, pass_word: password })
+      .then((users) => {
+        users.map((users) => users.toObject());
+        console.log(users);
+        if (
+          users.length &&
+          users[0].user_name === username &&
+          users[0].pass_word === password
+        ) {
+          req.session.user = username;
+          res.redirect("/homepage");
+        } else {
+          res.send("Invalid username or password");
+        }
+      })
+      .catch((error) => next(error));
   });
 
-  console.log("bug");
   app.get("/homepage", siteRouter);
 }
 
