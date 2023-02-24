@@ -8,11 +8,13 @@ class SiteController {
       Task.find({})
         .then((tasks) => {
           tasks = tasks.map((tasks) => tasks.toObject());
-          Submission.find({})
+
+          Submission.find({ user_name: req.session.user })
             .then((submissions) => {
               submissions = submissions.map((submissions) =>
                 submissions.toObject()
               );
+              // res.json(submissions);
               res.render("home", {
                 username: req.session.user,
                 tasks,

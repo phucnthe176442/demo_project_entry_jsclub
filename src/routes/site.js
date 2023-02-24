@@ -4,9 +4,9 @@ const taskRouter = require("./tasks");
 
 const siteController = require("../app/controllers/SiteController");
 
-console.log('bug')
+
 router.get('/tasks', taskRouter);
-router.get('/', siteController.index);
+router.get('/homepage', siteController.index);
 
 
 module.exports = router;
