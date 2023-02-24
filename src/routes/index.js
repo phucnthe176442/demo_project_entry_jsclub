@@ -25,7 +25,7 @@ function route(app) {
 
     if (username === "admin" && password === "1") {
       req.session.user = username;
-      res.redirect('/homepage');
+      res.redirect('home');
     } else {
       res.send("Invalid username or password");
     }
