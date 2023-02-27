@@ -47,7 +47,7 @@
 .change_username {
   width: 400px;
   height: 320px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   text-align: center;
   padding-top: 10px;
   margin: 0 0 10% 0;
@@ -65,7 +65,8 @@
   background-color: #e2e1e1;
   border: none; }
 
-#old_username, #new_username {
+#old_username,
+#new_username {
   flex: 2; }
 
 #seperate {
@@ -81,11 +82,11 @@
   border: none; }
 
 #cancel_username {
-  background-color: #D9D9D9; }
+  background-color: #d9d9d9; }
 
 #confirm {
   color: white;
-  background-color: #1E3957; }
+  background-color: #1e3957; }
 
 /* popup of the change password ui */
 .popup_change_password {
@@ -104,7 +105,7 @@
 .change_password {
   width: 400px;
   height: 320px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   text-align: center;
   padding-top: 10px;
   margin: 0 0 10% 0;
@@ -122,16 +123,17 @@
   background-color: #e2e1e1;
   border: none; }
 
-#old_password, #new_password {
+#old_password,
+#new_password {
   flex: 2; }
 
 #cancel_password {
-  background-color: #D9D9D9; }
+  background-color: #d9d9d9; }
 
 /* footer */
 .footer {
   height: 80px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,7 +144,8 @@
 .nav_item {
   margin: 0; }
 
-.nav_item_footer1, .nav_item_footer2 {
+.nav_item_footer1,
+.nav_item_footer2 {
   justify-content: center;
   list-style: none;
   display: flex;
@@ -174,7 +177,7 @@
   flex: 8; }
 
 a {
-  color: #0A2749;
+  color: #0a2749;
   text-decoration: none;
   /* no underline */ }
 
@@ -253,7 +256,7 @@ img {
   font-size: 16px;
   color: #333;
   pointer-events: none;
-  transition: .5s; }
+  transition: 0.5s; }
 
 .login-box .user-box input:focus ~ label,
 .login-box .user-box input:valid ~ label {
@@ -270,7 +273,7 @@ img {
   align-items: center;
   padding: 10px;
   color: #fff;
-  background-color: #1E3957;
+  background-color: #1e3957;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -315,7 +318,7 @@ p:hover {
 
 /* ranking */
 .ranking {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   width: 60%;
   height: 75vh;
   margin: 0 auto;
@@ -338,16 +341,16 @@ p:hover {
   height: 5vh; }
 
 .ranking_categories li {
-  background-color: #1E3957;
-  color: #FFFFFF;
+  background-color: #1e3957;
+  color: #ffffff;
   height: 5vh;
   display: flex;
   border-radius: 2px;
   /* text-align: center; */ }
 
 .ranking_content li {
-  background-color: #3888B0;
-  color: #FFFFFF;
+  background-color: #3888b0;
+  color: #ffffff;
   height: 3vh;
   display: flex;
   border-radius: 2px;
@@ -384,10 +387,9 @@ p:hover {
 .container_task_and_submit {
   display: flex;
   justify-content: center;
-  height: 85vh;
+  height: 90vh;
   width: 100%;
   margin: 0 auto;
-  margin-top: 60px;
   background-color: #f6f6f6; }
 
 .problem_content {
@@ -413,10 +415,10 @@ iframe {
 
 .tool_bar a {
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   flex: 1;
   text-align: center;
-  background-color: #1E3957;
+  background-color: #1e3957;
   margin: 0 40px 0 40px;
   padding: 5px 0 5px 0;
   border-radius: 3px;
@@ -425,27 +427,33 @@ iframe {
 .submit {
   width: 15%;
   height: 20%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin-left: 30px;
   margin-top: 74px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center; }
 
 .submit input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 90%;
   background-color: #d9d9d9;
   padding: 2px 10px 2px 10px;
   border-radius: 3px; }
 
-.submit div {
-  color: #FFFFFF;
+.submit button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: #ffffff;
   padding: 5px 25px 5px 25px;
-  background-color: #1E3957;
+  background-color: #1e3957;
   border-radius: 3px; }
 
-.submit div:hover {
+.submit button:hover {
   cursor: pointer; }
 
 /* home page*/

@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const taskRouter = require("./tasks");
 
 const siteController = require("../app/controllers/SiteController");
 
+const adminRouter = require("../routes/admin")
+const taskRouter = require("../routes/tasks")
+const submitRouter = require("../routes/submit")
 
-router.get('/tasks', taskRouter);
-router.get('/homepage', siteController.index);
-
+router.use("/admin", adminRouter);
+router.use("/submit", submitRouter);
+router.use("/tasks", taskRouter);
+router.use("/", siteController.index);
 
 module.exports = router;

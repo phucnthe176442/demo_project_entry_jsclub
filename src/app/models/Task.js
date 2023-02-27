@@ -7,7 +7,9 @@ const Task = new Schema ({
   time_limit: { type: String },
   memory_limit: { type: String },
   slug: { type: String },
-  score: { type: Number }
+  score: { type: Number },
+  createAt: { type: Date, default: Date.now},
+  updateAt: { type: Date, default: Date.now},
 });
 
 module.exports = mongoose.model('Task', Task);
