@@ -4,7 +4,7 @@ class TaskController {
   // [GET] /homepage/tasks/:slug
   index(req, res, next) {
     if (req.session.user) {
-      Task.findOne({ task_name: req.params.slug })
+      Task.findOne({ task_name: req.params.slug }).lean()
       .then((task) => {
         res.render("submit", { username: req.session.user, task });
       })
