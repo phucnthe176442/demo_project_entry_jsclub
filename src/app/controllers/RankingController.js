@@ -3,10 +3,10 @@ const User = require("../models/User");
 class RankingController {
   // [GET] /
   index(req, res) {
-    User.find({})
+    User.find({}).lean()
       .sort({ score: 'desc' } )
       .then((users) => {
-        users = users.map((users) => users.toObject());
+        // users = users.map((users) => users.toObject());
         // res.json(users);
         res.render('ranking', { users });
       })
