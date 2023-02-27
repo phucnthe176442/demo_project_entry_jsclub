@@ -1,15 +1,18 @@
 <div class="container_task_and_submit">
-    <div class="problem_content">
-        <div class="tool_bar">
-            <p>Problem name</p>
-            <a href="">solution</a>
-            <a href="">get template</a>
-        </div>
-        <iframe src="resources/debai.pdf"></iframe>
+  <div class="problem_content">
+    <div class="tool_bar">
+      <p>{{task.task_name}}</p>
+      <a href="">solution</a>
+      <a href="">get template</a>
     </div>
+    <iframe src="tasks/debai.pdf"></iframe>
+  </div>
 
-    <div class="submit">
-        <input type="file" name="" id="">
-        <div>Submit</div>
-    </div>
+  <div class="submit">
+    <form method="POST" action="/homepage/submit">
+      <input type="file" name="data"/>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
 </div>
