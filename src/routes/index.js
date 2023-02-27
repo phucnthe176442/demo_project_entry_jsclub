@@ -16,7 +16,7 @@ function route(app) {
   );
 
   app.get("/", (req, res) => {
-    res.render('login');
+    res.render("login");
   });
 
   app.post("/", (req, res) => {
@@ -34,9 +34,13 @@ function route(app) {
     User.find({ user_name: username, pass_word: password })
       .then((users) => {
         users.map((users) => users.toObject());
-        console.log(users);
-        if (
-          users.length &&
+        
+        if(username === "admin" && password === "1") {
+          req.session.user = username;
+          res.redirect("/homepage/admin");
+        }
+        else if (
+          users.length === 1 &&
           users[0].user_name === username &&
           users[0].pass_word === password
         ) {
@@ -49,8 +53,8 @@ function route(app) {
       .catch((error) => next(error));
 
   });
-
-  app.get("/homepage", siteRouter);
+  
+  app.use("/homepage", siteRouter);
 }
 
 module.exports = route;
