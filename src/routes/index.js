@@ -24,13 +24,6 @@ function route(app) {
 
     // TODO: check the credentials in the database
 
-    if (username === "admin" && password === "1") {
-      req.session.user = username;
-      res.redirect('home');
-    } else {
-      res.send("Invalid username or password");
-    }
-
     User.find({ user_name: username, pass_word: password })
       .then((users) => {
         users.map((users) => users.toObject());
