@@ -5,6 +5,7 @@ class SubmitController {
   // [POST] /homepage/submit
   createSubmission(req, res, next) {
     if (req.session.user) {
+        
         res.redirect('/homepage');
     } else {
       res.redirect("/");

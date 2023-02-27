@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "63f40a07ba4ad95bbd8c70ee"
+  },
+  "user_name": "admin",
+  "pass_word": "1",
+  "email": "admin@fpt.edu.vn",
+  "score": 1000
+},{
+  "_id": {
+    "$oid": "63f40a5cba4ad95bbd8c70ef"
+  },
+  "user_name": "phucnthe176442",
+  "pass_word": "1",
+  "email": "phucnthe176442@fpt.edu.vn",
+  "score": 100
+},{
+  "_id": {
+    "$oid": "63f40e73ba4ad95bbd8c70f0"
+  },
+  "user_name": "thuyvy",
+  "pass_word": "1",
+  "email": "thuyvy@fpt.edu.vn",
+  "score": 101
+},{
+  "_id": {
+    "$oid": "63f40e88ba4ad95bbd8c70f1"
+  },
+  "user_name": "truonggiang",
+  "pass_word": "1",
+  "email": "truonggiang@fpt.edu.vn",
+  "score": 102
+},{
+  "_id": {
+    "$oid": "63f40e9fba4ad95bbd8c70f2"
+  },
+  "user_name": "trungdung",
+  "pass_word": "1",
+  "email": "admin@fpt.edu.vn",
+  "score": 104
+},{
+  "_id": {
+    "$oid": "63f40eafba4ad95bbd8c70f3"
+  },
+  "user_name": "minhduc",
+  "pass_word": "1",
+  "email": "admin@fpt.edu.vn",
+  "score": 103
+}]
