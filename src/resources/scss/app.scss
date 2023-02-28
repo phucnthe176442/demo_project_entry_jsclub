@@ -240,6 +240,7 @@ a {
 /* login */
 
 .Left_side img {
+  display: flex;
   height: 730px;
   width: 1300px;
 }
@@ -384,6 +385,31 @@ p {
 
 p:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 700px) {
+  .Left_side {
+    display: none;
+  }
+
+  .container-new {
+    margin-top: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Right_side {
+    max-width: 320px;
+    position: static;
+    width: 45%;
+    height: 100%;
+  }
+
+  .login-box {
+    position: static;
+    transform: translate(0, 0);
+  }
 }
 
 /* ranking */
@@ -542,7 +568,7 @@ iframe {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  // margin-top: 20px;
   color: #ffffff;
   padding: 5px 25px 5px 25px;
   background-color: #1e3957;
