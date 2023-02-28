@@ -2,48 +2,64 @@ const Submission = require("../models/Submission");
 const User = require("../models/User");
 const Testcase = require("../models/Testcase");
 
-const child = require('child_process');
+const cp = require('child_process');
+const {execSync} = require('child_process');
 
 function compile() {
   // compile the C code using GCC
-  const fileName = "solution.c";
-  const compileCommand ='gcc -o ' + __dirname + '\\solution';
-    //  + __dirname + `\\${fileName}`;
-  child.execSync(compileCommand, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`compiled successfully`);
-  });
+  // const fileName = "solution.c";
+  const command = 'gcc -o ' +__dirname+'\\solution '+__dirname+'\\solution.c';
+  const exec_options = {
+    cwd: __dirname,
+    timeout: 1000,
+    killSignal: "SIGTERM",
+    stdio: 'inherit',
+    shell: true
+  };
+  cp.execSync(command, [], exec_options);
+  console.log('compiled successfully');
 }
-async function execute(testcase) {
-    const cmd = './'+__dirname + "\\solution";
-    const child = exec(cmd, (err, stdout, stderr) => {
-      if (err) {
-        console.error(`exec error: ${err}`);
-        return;
-      }
-    });
-    child.stdin.write(testcase.input);
-    console.log(`stdout: `+child.stdout);
-    if(child.stderr)
-      console.error(`stderr: ` +child.err);
-    child.stdin.end();
-    return child.stdout;
-  }
+function execute(testcase) {
+  let command = __dirname + '\\solution';
+  const exec_options = {
+    input: testcase.input,
+    cwd: __dirname,
+    timeout: 3000,
+    killSignal: "SIGTERM",
+    stdio: 'inherit',
+    shell: true
+  };
+  let output = cp.spawnSync(command, exec_options);
+  console.log(output);
+  return output;
 
-async function checkTest(testcases) {
+  // const cmd = __dirname + "\\solution";
+
+  //   const child = execSync(cmd, (err, stdout, stderr) => {
+  //     if (err) {
+  //       console.error(`exec error: ${err}`);
+  //       return;
+  //     }
+  //     console.log(`stdout: ${stdout}`);
+  //     console.error(`stderr: ${stderr}`);
+  //   });
+
+  //   child.stdin.write(testcase.input);
+  //   child.stdin.end();
+}
+
+function checkTest(testcases) {
   let correct = 0;
   for (let i = 0; i < testcases.length; ++i) {
-    const output = await execute(testcases[i]);
+    const output = execute(testcases[i]);
     if (output === testcases[i].output) correct++;
   }
   return correct;
 }
 
-async function run(testcases) {
-  return compile().then(checkTest(testcases));
+function run(testcases) {
+  compile();
+  return checkTest(testcases);
 }
 
 class SubmitController {
@@ -53,10 +69,11 @@ class SubmitController {
       Testcase.find({ task_name: req.body.task_name })
         .lean()
         .then((testcases) => {
-          compile();
+          let correct = run(testcases);
+          res.json(correct);
         })
         .catch((error) => next(error));
-        res.redirect("/homepage");
+      // res.redirect("/homepage");
     } else {
       res.redirect("/");
     }
