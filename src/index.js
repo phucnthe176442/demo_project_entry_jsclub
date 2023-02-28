@@ -7,7 +7,7 @@ const port = 2433;
 const route = require("./routes");
 const db = require("./config/db");
 
-// oonnect db
+// connect db
 db.connect();
 
 app.use(express.static(path.join(__dirname, "public")));

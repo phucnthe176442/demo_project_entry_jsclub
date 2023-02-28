@@ -9,6 +9,8 @@ const Submission = new Schema({
   slug: { type: String },
   createAt: { type: Date, default: Date.now },
   updateAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model("Submission", Submission);
