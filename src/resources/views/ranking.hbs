@@ -1,16 +1,17 @@
-
 <div class="ranking">
-    <ul class="ranking_categories">
-        <li class="rank_rank">Rank</li>
-        <li class="username_rank">Username</li>
-        <li class="score">Score</li>
-    </ul> 
+  <ul class="ranking_categories">
+    <li class="rank_rank">Rank</li>
+    <li class="username_rank">Username</li>
+    <li class="score">Score</li>
+  </ul>
 
-    {{#each users}}
+  {{#each users}}
     <ul class="ranking_content">
-        <li class="rank_rank">{{@index}}</li>
-        <li class="username_rank">{{this.user_name}}</li>
-        <li class="score">{{this.score}}</li>
+      <li class="rank_rank">{{@index}}</li>
+      <li class="username_rank">{{this.user_name}}</li>
+      <li class="score">{{this.score}}</li>
     </ul>
-    {{/each}}
+  {{/each}}
+  <ul class="ranking_end">
+  </ul>
 </div>

@@ -25,6 +25,7 @@ class TaskController {
     }
   }
 
+  // sau khi upload ve tasks chuyen sang binary roi luu vao database
   // [POST] /homepage/admin/tasks/create/
   create(req, res, next) {
     if (req.session.user) {

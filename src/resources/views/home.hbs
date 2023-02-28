@@ -1,37 +1,53 @@
-<div class="container-new">
-    <div class="Left_side">
-      <img src="anhteam.jpg" alt="anh team" />
-    </div>
-    <div class="Right_side">
-      <div class="login-box">
-        <h2>Login</h2>
-        <form method="post" action="/">
-          <div class="user-box">
-            <input type="text" name="username" required="" />
-            <label>Username</label>
-          </div>
-          <div class="user-box">
-            <input type="password" name="password" required="" />
-            <label>Password</label>
-          </div>
-  
-          <br /><br />
-  
-          <div class="remember-me--forget-password">
-            <label>
-              <input type="checkbox" name="item" checked />
-              <span class="text-checkbox">Remember me</span>
-            </label>
-            <p>Forget password?</p>
-          </div>
-          <button type="submit">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
+<div class="content-homepage">
+  <div class="task-table">
+    <h1> Problem Set </h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Task Name</th>
+          <th scope="col">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each tasks}}
+          <tr>
+            <th scope="row">{{@index}}</th>
+            <td>
+              <a href="homepage/tasks/{{this.slug}}">
+                {{this.task_name}}
+              </a>
+            </td>
+            <td>{{this.score}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
+  <div class="submission-table">
+    <h1>Submissions</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">When</th>
+          <th scope="col">Task Name</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each submissions}}
+          <tr>
+            <th scope="row">{{@index}}</th>
+            <td>{{this.when}}</td>
+            <td>
+              <a href="homepage/tasks/{{this.slug}}">
+                {{this.task_name}}
+              </a></td>
+            <td>{{this.status}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
