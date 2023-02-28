@@ -9,10 +9,11 @@
   </div>
 
   <div class="submit">
-    <form method="POST" action="/homepage/submit">
-      <input type="file" name="data"/>
-      <button type="submit">Submit</button>
+    <form method="post" action="/homepage/submit" enctype="multipart/form-data">
+        <input type="hidden" value='{{task.task_name}}' name="task_name">
+        <label for="solution">Upload your solution here</label><br>
+        <input type="file" id="solution" name="solution"><br>
+        <button type="submit">Submit</button><br>     
     </form>
   </div>
-
 </div>

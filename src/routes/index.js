@@ -21,6 +21,9 @@ function route(app) {
 
   app.post("/", (req, res) => {
     const { username, password } = req.body;
+
+    // TODO: check the credentials in the database
+
     User.find({ user_name: username, pass_word: password })
       .then((users) => {
         users.map((users) => users.toObject());
@@ -36,11 +39,12 @@ function route(app) {
         ) {
           req.session.user = username;
           res.redirect("/homepage");
-        } else {
-          res.send("Invalid username or password");
-        }
+    } else {
+      res.send("Invalid username or password");
+    }
       })
       .catch((error) => next(error));
+
   });
   
   app.use("/homepage", siteRouter);
