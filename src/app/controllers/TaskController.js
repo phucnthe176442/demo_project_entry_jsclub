@@ -25,7 +25,7 @@ class TaskController {
     }
   }
 
-  // [POST] /homepage/tasks/create
+  // [POST] /homepage/admin/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
       res.redirect("/homepage/admin");

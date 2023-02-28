@@ -9,7 +9,7 @@ class AdminController {
         .then((tasks) => {
           tasks = tasks.map((tasks) => tasks.toObject());
 
-          Submission.find({ user_name: req.session.user })
+          Submission.find({ })
             .then((submissions) => {
               submissions = submissions.map((submissions) =>
                 submissions.toObject()

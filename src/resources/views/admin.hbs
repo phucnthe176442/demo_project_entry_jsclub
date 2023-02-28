@@ -36,6 +36,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">When</th>
+          <th scope="col">Username</th>
           <th scope="col">Task Name</th>
           <th scope="col">Status</th>
         </tr>
@@ -45,6 +46,7 @@
           <tr>
             <th scope="row">{{@index}}</th>
             <td>{{this.when}}</td>
+            <td>{{this.user_name}}</td>
             <td>
               <a href="homepage/tasks/{{this.task_name}}">
                 {{this.task_name}}
