@@ -4,6 +4,12 @@ const fs = require("fs");
 const axios = require("axios");
 const qs = require("qs");
 const Testcase = require("../models/Testcase");
+const Submission = require("../models/Submission");
+const User = require("../models/User");
+const fs = require("fs");
+const axios = require("axios");
+const qs = require("qs");
+const Testcase = require("../models/Testcase");
 
 async function compile(code, testcase) {
   let sendData = qs.stringify({
@@ -38,15 +44,13 @@ async function checkTest(code, testcases, req) {
   let i = 0;
   for (let testcase of testcases) {
     correct = await compile(code, testcase).then((res) => {
-      console.log("test number " + i + " succeed with output: " + res.output);
-      if (res.output === testcase.output) correct++;
-      else
-        return -1;
+      console.log("test number " + i + " succeed with output: " + res);
+      if (res === testcase.output) correct++;
+      else return -1;
       i++;
       return correct;
     });
-    if (correct == -1)
-      break;
+    if (correct == -1) break;
   }
 
   var status = "Wrong answer";

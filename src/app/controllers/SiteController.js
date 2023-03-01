@@ -9,7 +9,7 @@ class SiteController {
         .then((tasks) => {
           // tasks = tasks.map((tasks) => tasks.toObject());
 
-          Submission.find({ user_name: req.session.user }).lean()
+          Submission.find({ user_name: req.session.user }).lean().sort({createAt: "desc"})
             .then((submissions) => {
               // submissions = submissions.map((submissions) =>
               //   submissions.toObject()
@@ -18,7 +18,7 @@ class SiteController {
               res.render("home", {
                 username: req.session.user,
                 tasks,
-                submissions,
+                submissions
               });
             })
             .catch((error) => next(error));

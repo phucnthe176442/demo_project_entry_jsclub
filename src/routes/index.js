@@ -24,7 +24,7 @@ function route(app) {
 
     // TODO: check the credentials in the database
 
-    User.find({ user_name: username, pass_word: password })
+    User.find({ user_name: username, pass_word: password }).lean()
       .then((users) => {
         users.map((users) => users.toObject());
         

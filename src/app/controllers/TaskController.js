@@ -25,10 +25,18 @@ class TaskController {
     }
   }
 
-  // [POST] /homepage/tasks/create
+  // sau khi upload ve tasks chuyen sang binary roi luu vao database
+  // [POST] /homepage/admin/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
-      res.redirect("/homepage/admin");
+      FormData = {
+        task_name: req.body.task_name,
+        score: req.body.score,
+        slug: req.body.saveName
+      }
+      let task = new Task(FormData);
+      task.save();
+      res.redirect("/homepage/admin/tasks/showCreate/");
     } else {
       res.redirect("/");
     }
