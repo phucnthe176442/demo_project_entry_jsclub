@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Testcase = require("../models/Testcase");
 
 const cp = require('child_process');
-const {execSync} = require('child_process');
+// const {execSync} = require('child_process');
 
 function compile() {
   // compile the C code using GCC
@@ -21,17 +21,26 @@ function compile() {
 }
 function execute(testcase) {
   let command = __dirname + '\\solution';
+  console.log(testcase.input);
   const exec_options = {
     input: testcase.input,
     cwd: __dirname,
-    timeout: 3000,
-    killSignal: "SIGTERM",
+    // timeout: 1000,
+    // killSignal: "SIGTERM",
     stdio: 'inherit',
-    shell: true
+    shell: true,
+    encoding: 'utf8'
   };
   let output = cp.spawnSync(command, exec_options);
-  console.log(output);
-  return output;
+  console.log(output.output);
+ 
+  // console.log(output.output);
+  // child.stdout.on('data', (data)=>{
+  //   console.log(data);
+    // return output;    
+  // })
+  // console.log(output);
+  // return output;
 
   // const cmd = __dirname + "\\solution";
 
