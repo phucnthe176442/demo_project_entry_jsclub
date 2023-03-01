@@ -70,6 +70,7 @@ class SubmitController {
       Testcase.find({ task_name: req.body.task_name }).lean()
         .then(async (testcases) => {
           await checkTest(code, testcases, req);
+          res.redirect('/homepage')
         })
         .catch((error) => next(error));
 
