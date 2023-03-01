@@ -25,10 +25,11 @@ async function compile(code, testcase) {
   let output = await axios(config)
     .then((res) => {
       // console.log('data: ' + res.data.output);
+      console('output '+res.data.output);
       return res.data.output;
     })
     .catch(function (err) {
-      console.log(err);
+      console.log('err '+err);
     });
   return output;
 }
@@ -38,7 +39,7 @@ async function checkTest(code, testcases, req) {
   let i = 0;
   for (let testcase of testcases) {
     correct = await compile(code, testcase).then((res) => {
-      console.log('test number ' + i + ' succeed with output: ' + res);
+      // console.log('test number ' + i + ' succeed with output: ' + res);
       if(res === testcase.output)
         correct++;
       i++;
@@ -53,7 +54,7 @@ async function checkTest(code, testcases, req) {
     user_name: req.session.user,
     task_name: req.body.task_name,
     status: status,
-    slug: req.body.task_name
+    slug: req.body.task_slug
   };
   console.log(FormData);
   var submission = new Submission(FormData);
