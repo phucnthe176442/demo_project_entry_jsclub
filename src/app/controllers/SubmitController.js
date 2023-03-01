@@ -1,80 +1,81 @@
-const Submission = require("../models/Submission");
-const User = require("../models/User");
-const Testcase = require("../models/Testcase");
+const Submission = require('../models/Submission');
+const User = require('../models/User');
+const fs = require('fs');
+const axios = require('axios');
+const qs = require('qs');
+const Testcase = require('../models/Testcase');
 
-const cp = require('child_process');
-const {execSync} = require('child_process');
+async function compile(code, testcase) {
+  let sendData = qs.stringify({
+    'code': code,
+    'language': 'c',
+    'input': testcase.input
+  });
+  //the config of axios to use CodeX API
+  let config = {
+    method: 'post',
+    url: 'https://api.codex.jaagrav.in',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data: sendData
+  };
+  //send the code and get the result
 
-function compile() {
-  // compile the C code using GCC
-  // const fileName = "solution.c";
-  const command = 'gcc -o ' +__dirname+'\\solution '+__dirname+'\\solution.c';
-  const exec_options = {
-    cwd: __dirname,
-    timeout: 1000,
-    killSignal: "SIGTERM",
-    stdio: 'inherit',
-    shell: true
-  };
-  cp.execSync(command, [], exec_options);
-  console.log('compiled successfully');
-}
-function execute(testcase) {
-  let command = __dirname + '\\solution';
-  const exec_options = {
-    input: testcase.input,
-    cwd: __dirname,
-    timeout: 3000,
-    killSignal: "SIGTERM",
-    stdio: 'inherit',
-    shell: true
-  };
-  let output = cp.spawnSync(command, exec_options);
-  console.log(output);
+  let output = await axios(config)
+    .then((res) => {
+      // console.log('data: ' + res.data.output);
+      return res.data.output;
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
   return output;
-
-  // const cmd = __dirname + "\\solution";
-
-  //   const child = execSync(cmd, (err, stdout, stderr) => {
-  //     if (err) {
-  //       console.error(`exec error: ${err}`);
-  //       return;
-  //     }
-  //     console.log(`stdout: ${stdout}`);
-  //     console.error(`stderr: ${stderr}`);
-  //   });
-
-  //   child.stdin.write(testcase.input);
-  //   child.stdin.end();
 }
 
-function checkTest(testcases) {
+async function checkTest(code, testcases, req) {
   let correct = 0;
-  for (let i = 0; i < testcases.length; ++i) {
-    const output = execute(testcases[i]);
-    if (output === testcases[i].output) correct++;
+  let i = 0;
+  for (let testcase of testcases) {
+    correct = await compile(code, testcase).then((res) => {
+      console.log('test number ' + i + ' succeed with output: ' + res);
+      if(res === testcase.output)
+        correct++;
+      i++;
+      return correct;
+    })
   }
-  return correct;
-}
 
-function run(testcases) {
-  compile();
-  return checkTest(testcases);
+  var status = 'Wrong answer';
+  if (correct == testcases.length) 
+    status = 'Accepted';
+  var FormData = {
+    user_name: req.session.user,
+    task_name: req.body.task_name,
+    status: status,
+    slug: req.body.task_slug
+  };
+  console.log(FormData);
+  var submission = new Submission(FormData);
+  submission.save();
 }
 
 class SubmitController {
   // [POST] /homepage/submit
   createSubmission(req, res, next) {
     if (req.session.user) {
-      Testcase.find({ task_name: req.body.task_name })
-        .lean()
-        .then((testcases) => {
-          let correct = run(testcases);
-          res.json(correct);
+      let code = '#include<stdio.h> \nint main(){printf("Hello World");return 0;}';
+      code = fs.readFileSync('./src/public/solutions/solution.c');
+
+      Testcase.find({ task_name: req.body.task_name }).lean()
+        .then(async (testcases) => {
+          await checkTest(code, testcases, req);
+          res.redirect('/homepage')
         })
         .catch((error) => next(error));
-      // res.redirect("/homepage");
-    } else {
+
+    } 
+    else {
       res.redirect("/");
     }
   }
