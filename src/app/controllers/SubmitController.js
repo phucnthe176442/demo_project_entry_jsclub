@@ -35,10 +35,6 @@ function execute(testcase) {
   console.log(output.output);
  
   // console.log(output.output);
-  // child.stdout.on('data', (data)=>{
-  //   console.log(data);
-    // return output;    
-  // })
   // console.log(output);
   // return output;
 
