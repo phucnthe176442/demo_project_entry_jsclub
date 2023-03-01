@@ -18,7 +18,7 @@ class SiteController {
               res.render("home", {
                 username: req.session.user,
                 tasks,
-                submissions,
+                submissions
               });
             })
             .catch((error) => next(error));

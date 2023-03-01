@@ -9,8 +9,8 @@ let storage = multer.diskStorage({
         cb(null, "./src/public/tasks");
     },
     filename: (req, file, cb) => {
-        req.body
-        cb(null, req.body.task_name + Date.now() + ".pdf");
+        req.body.saveName = req.body.task_name +'_'+ Date.now();
+        cb(null, req.body.saveName + ".pdf");
     },
 });
 let upload = multer({ storage: storage });

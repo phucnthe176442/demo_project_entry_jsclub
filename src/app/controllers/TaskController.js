@@ -32,11 +32,11 @@ class TaskController {
       FormData = {
         task_name: req.body.task_name,
         score: req.body.score,
-        slug: req.body.task_name+Date.now()
+        slug: req.body.saveName
       }
       let task = new Task(FormData);
       task.save();
-      res.redirect("/homepage/admin");
+      res.redirect("/homepage/admin/tasks/showCreate/");
     } else {
       res.redirect("/");
     }
