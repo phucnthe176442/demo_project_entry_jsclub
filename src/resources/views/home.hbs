@@ -26,7 +26,7 @@
   </div>
   <div class="submission-table">
     <h1>Submissions</h1>
-    <table class="table">
+    <table class="table" style="overflow-y:auto;">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -39,7 +39,7 @@
         {{#each submissions}}
           <tr>
             <th scope="row">{{@index}}</th>
-            <td>{{this.when}}</td>
+            <td>{{this.createAt}}</td>
             <td>
               <a href="homepage/tasks/{{this.slug}}">
                 {{this.task_name}}

@@ -5,15 +5,15 @@ class SiteController {
   // [GET] /
   index(req, res) {
     if (req.session.user) {
-      Task.find({})
+      Task.find({}).lean()
         .then((tasks) => {
-          tasks = tasks.map((tasks) => tasks.toObject());
+          // tasks = tasks.map((tasks) => tasks.toObject());
 
-          Submission.find({ user_name: req.session.user })
+          Submission.find({ user_name: req.session.user }).lean()
             .then((submissions) => {
-              submissions = submissions.map((submissions) =>
-                submissions.toObject()
-              );
+              // submissions = submissions.map((submissions) =>
+              //   submissions.toObject()
+              // );
               // res.json(submissions);
               res.render("home", {
                 username: req.session.user,
