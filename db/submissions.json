@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "63f3966e8e28a94ba6ca8bc9"
+  },
+  "task_name": "Bai 1",
+  "status": "Accepted",
+  "when": {
+    "$date": {
+      "$numberLong": "1676826000000"
+    }
+  },
+  "slug": "debai",
+  "user_name": "admin"
+},{
+  "_id": {
+    "$oid": "63f3969b8e28a94ba6ca8bca"
+  },
+  "task_name": "Bai 2",
+  "status": "Accepted",
+  "when": {
+    "$date": {
+      "$numberLong": "1676826000000"
+    }
+  },
+  "slug": "debai",
+  "user_name": "admin"
+},{
+  "_id": {
+    "$oid": "63f396a08e28a94ba6ca8bcb"
+  },
+  "task_name": "Bai 3",
+  "status": "Accepted",
+  "when": {
+    "$date": {
+      "$numberLong": "1676826000000"
+    }
+  },
+  "slug": "debai",
+  "user_name": "minhduc"
+}]

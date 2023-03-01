@@ -73,8 +73,8 @@ class SubmitController {
           await checkTest(code, testcases, req);
         })
         .catch((error) => next(error));
-        res.redirect("/homepage");
-    }
+
+    } 
     else {
       res.redirect("/");
     }

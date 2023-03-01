@@ -1,14 +1,16 @@
-const Task = require('../models/Task')
+const Task = require("../models/Task");
 
 class TaskController {
   // [GET] /homepage/tasks/:slug
   index(req, res, next) {
     if (req.session.user) {
-      Task.findOne({ task_name: req.params.slug }).lean()
-      .then((task) => {
-        res.render("submit", { username: req.session.user, task });
-      })
-      .catch(next);
+      Task.findOne({ slug: req.params.slug })
+        .lean()
+        .then((task) => {
+          //res.json(task)
+          res.render("submit", { username: req.session.user, task });
+        })
+        .catch(next);
     } else {
       res.redirect("/");
     }
@@ -26,7 +28,7 @@ class TaskController {
   // [POST] /homepage/tasks/create
   create(req, res, next) {
     if (req.session.user) {
-      res.redirect("/homepage/admin")
+      res.redirect("/homepage/admin");
     } else {
       res.redirect("/");
     }

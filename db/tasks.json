@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "63f361178e28a94ba6ca8bc5"
+  },
+  "task_name": "bai 1",
+  "time_limit": "1",
+  "memory_limit": "256",
+  "slug": "bai1",
+  "score": 100,
+  "task_description": "link"
+},{
+  "_id": {
+    "$oid": "63f361ad8e28a94ba6ca8bc6"
+  },
+  "task_name": "bai 2",
+  "time_limit": "1",
+  "memory_limit": "256",
+  "slug": "bai2",
+  "score": 200,
+  "task_description": "link"
+},{
+  "_id": {
+    "$oid": "63f361b78e28a94ba6ca8bc7"
+  },
+  "task_name": "bai 3",
+  "time_limit": "1",
+  "memory_limit": "256",
+  "slug": "bai3",
+  "score": 300,
+  "task_description": "link"
+}]
