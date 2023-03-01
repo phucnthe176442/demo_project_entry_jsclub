@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.app {
+  min-height: 650px;
+}
+
 /* header */
 
 .nav-link {
@@ -329,8 +333,8 @@ img {
   transition: 0.5s;
 }
 
-.login-box .user-box input:focus~label,
-.login-box .user-box input:valid~label {
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
   color: #333;
@@ -400,27 +404,26 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
-
   .Left_side {
-      display: none;
+    display: none;
   }
 
   .container-new {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .Right_side {
-      position: static;
-      flex: 0.5;
-      height: 80%;
-      margin-bottom: 12vh;
+    position: static;
+    flex: 0.5;
+    height: 80%;
+    margin-bottom: 12vh;
   }
 
   .login-box {
-      position: static;
-      transform: translate(0, 0);
+    position: static;
+    transform: translate(0, 0);
   }
 }
 
