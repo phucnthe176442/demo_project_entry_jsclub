@@ -29,10 +29,10 @@ class TaskController {
   // [POST] /homepage/admin/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
-      FormData = {
+      const FormData = {
         task_name: req.body.task_name,
         score: req.body.score,
-        slug: req.body.task_name+Date.now()
+        slug: req.body.task_name
       }
       let task = new Task(FormData);
       task.save();
