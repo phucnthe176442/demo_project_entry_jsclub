@@ -36,7 +36,7 @@ class TaskController {
       }
       let task = new Task(FormData);
       task.save();
-      res.redirect("/homepage/admin/tasks/showCreate/");
+      res.redirect("/homepage");
     } else {
       res.redirect("/");
     }
