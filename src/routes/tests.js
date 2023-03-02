@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const taskController = require("../app/controllers/TaskController");
+const testController = require("../app/controllers/TestController");
 const multer = require("multer");
 
 let storage = multer.diskStorage({
@@ -13,10 +13,7 @@ let storage = multer.diskStorage({
         cb(null, req.body.saveName + ".pdf");
     },
 });
-let upload = multer({ storage: storage });
-router.use("/delete", taskController.del);
-router.use("/create", upload.single("task_description"), taskController.create);
-router.use("/showCreate", taskController.showCreate)
-router.use("/:slug", taskController.index);
+router.use("/create", testController.create);
+router.use("/showCreate", testController.showCreate)
 
 module.exports = router;

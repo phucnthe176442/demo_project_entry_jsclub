@@ -4,7 +4,9 @@ const router = express.Router();
 const adminController = require("../app/controllers/AdminController");
 
 const tasksRouter = require("../routes/tasks");
+const testsRouter = require("../routes/tests");
 
+router.use("/tests", testsRouter);
 router.use("/tasks", tasksRouter);
 router.use("/", adminController.index);
 

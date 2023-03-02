@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/homepage/tasks/:slug", express.static(path.join(__dirname, "public")));
 app.use("/homepage/admin", express.static(path.join(__dirname, "public")))
 app.use("/homepage/admin/tasks/showCreate", express.static(path.join(__dirname, "public")))
+app.use("/homepage/admin/tests/showCreate", express.static(path.join(__dirname, "public")))
 
 // http logger
 app.use(morgan("combined"));

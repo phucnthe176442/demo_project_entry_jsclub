@@ -25,18 +25,26 @@ class TaskController {
     }
   }
 
-  // sau khi upload ve tasks chuyen sang binary roi luu vao database
   // [POST] /homepage/admin/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
       const FormData = {
         task_name: req.body.task_name,
         score: req.body.score,
-        slug: req.body.saveName
-      }
+        slug: req.body.saveName,
+      };
       let task = new Task(FormData);
       task.save();
-      res.redirect("/homepage/admin/tasks/showCreate/");
+      res.redirect("/homepage/admin");
+    } else {
+      res.redirect("/");
+    }
+  }
+
+  // [GET] /homepage/admin/tasks/delete
+  del(req, res, next) {
+    if (req.session.user) {
+      res.redirect("/homepage/admin");
     } else {
       res.redirect("/");
     }

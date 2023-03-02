@@ -1,4 +1,17 @@
 <div class="content-homepage">
+  <div class="userFunction">
+    <button>
+      <a href="/homepage/admin/tasks/showUser">
+        Show Users
+      </a>
+    </button>
+    <br />
+    <button>
+      <a href="/homepage/admin/tasks/showCreateUser">
+        Add User
+      </a>
+    </button>
+  </div>
   <div class="task-table">
     <h1> Problem Set </h1>
     <table class="table">
@@ -7,6 +20,8 @@
           <th scope="col">#</th>
           <th scope="col">Task Name</th>
           <th scope="col">Score</th>
+          <th scope="col">Test</th>
+          <th scope="col">Del</th>
         </tr>
       </thead>
       <tbody>
@@ -14,11 +29,25 @@
           <tr>
             <th scope="row">{{@index}}</th>
             <td>
-              <a href="homepage/tasks/{{this.slug}}">
+              <a href="/homepage/tasks/{{this.slug}}">
                 {{this.task_name}}
               </a>
             </td>
             <td>{{this.score}}</td>
+            <td>
+              <a href="/homepage/admin/tests/showCreate">
+                <button>
+                  <i class="fa-regular fa-plus"></i>
+                </button>
+              </a>
+            </td>
+            <td>
+              <a href="/homepage/admin/tasks/delete">
+                <button>
+                  <i class="fa-solid fa-circle-minus"></i>
+                </button>
+              </a>
+            </td>
           </tr>
         {{/each}}
       </tbody>
