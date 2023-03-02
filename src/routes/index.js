@@ -26,11 +26,10 @@ function route(app) {
 
     User.find({ user_name: username, pass_word: password }).lean()
       .then((users) => {
-        // users.map((users) => users.toObject());
         
         if(username === "admin" && password === "1") {
           req.session.user = username;
-          res.redirect("/homepage?admin=true");
+          res.redirect("/homepage/admin");
         }
         else if (
           users.length === 1 &&
@@ -38,7 +37,7 @@ function route(app) {
           users[0].pass_word === password
         ) {
           req.session.user = username;
-          res.redirect("/homepage?admin=false");
+          res.redirect("/homepage");
     } else {
       res.send("Invalid username or password");
     }
