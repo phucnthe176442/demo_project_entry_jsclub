@@ -29,6 +29,13 @@ class TaskController {
   // [POST] /homepage/admin/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
+      FormData = {
+        task_name: req.body.task_name,
+        score: req.body.score,
+        slug: req.body.task_name+Date.now()
+      }
+      let task = new Task(FormData);
+      task.save();
       res.redirect("/homepage/admin");
     } else {
       res.redirect("/");
