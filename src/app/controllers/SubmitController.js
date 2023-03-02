@@ -1,5 +1,7 @@
 const Submission = require("../models/Submission");
 const Testcase = require("../models/Testcase");
+const User = require("../models/User");
+const Task = require("../models/Task");
 const fs = require("fs");
 const axios = require("axios");
 const qs = require("qs");
@@ -21,16 +23,13 @@ async function compile(code, testcase) {
     data: sendData,
   };
   //send the code and get the result
-
-  let output = await axios(config)
+  return axios(config)
     .then((res) => {
-      // console.log('data: ' + res.data.error);
-      return res.data;
+      return res.data.output;
     })
     .catch(function (err) {
-      console.log('err' + err);
+      console.log('err: ' + err);
     });
-  return output;
 }
 
 async function checkTest(code, testcases, req) {
@@ -38,7 +37,7 @@ async function checkTest(code, testcases, req) {
   let i = 0;
   for (let testcase of testcases) {
     correct = await compile(code, testcase).then((res) => {
-      console.log("test number " + i + " succeed with output: " + res);
+      console.log("test number " + i + " ends with output: " + res);
       if (res === testcase.output) correct++;
       else return -1;
       i++;
@@ -55,9 +54,23 @@ async function checkTest(code, testcases, req) {
     status: status,
     slug: req.body.task_slug,
   };
-  console.log(FormData);
   var submission = new Submission(FormData);
   submission.save();
+  return status;
+}
+function addPoint(status, req) {
+  if (status == "Accepted")
+    Submission.find({ user_name: req.session.user, slug: req.body.task_slug, status: "Accepted" }).lean()
+      .then((submission) => {
+        if (submission.length == 0)
+          Task.findOne({ slug: req.body.task_slug }).lean()
+            .then((task) => {
+              User.findOne({ user_name: req.session.user }).lean()
+                .then((user) => {
+                  User.findOneAndUpdate({ user_name: req.session.user }, { score: (user.score + task.score) });
+                })
+            })
+      })
 }
 
 class SubmitController {
@@ -71,7 +84,8 @@ class SubmitController {
       Testcase.find({ task_name: req.body.task_name })
         .lean()
         .then(async (testcases) => {
-          await checkTest(code, testcases, req);
+          await checkTest(code, testcases, req)
+            .then((status) => addPoint(status, req));
           res.redirect("/homepage");
         })
         .catch((error) => next(error));
