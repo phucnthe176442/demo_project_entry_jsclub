@@ -81,7 +81,7 @@ class SubmitController {
         '#include<stdio.h> \nint main(){printf("Hello World");return 0;}';
       code = fs.readFileSync("./src/public/solutions/solution.c");
 
-      Testcase.find({ task_name: req.body.task_name })
+      Testcase.find({ task_name: req.body.task_slug })
         .lean()
         .then(async (testcases) => {
           await checkTest(code, testcases, req)
