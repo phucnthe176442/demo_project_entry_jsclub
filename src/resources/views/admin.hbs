@@ -1,13 +1,13 @@
 <div class="content-homepage">
   <div class="userFunction">
     <button>
-      <a href="/homepage/admin/tasks/showUser">
+      <a href="/homepage/users/showAll">
         Show Users
       </a>
     </button>
     <br />
     <button>
-      <a href="/homepage/admin/tasks/showCreateUser">
+      <a href="/homepage/users/show">
         Add User
       </a>
     </button>
@@ -35,7 +35,7 @@
             </td>
             <td>{{this.score}}</td>
             <td>
-              <a href="/homepage/tests/showCreate">
+              <a href="/homepage/tests/{{this.slug}}/{{this.task_name}}/showCreate">
                 <button>
                   <i class="fa-regular fa-plus"></i>
                 </button>
@@ -43,7 +43,7 @@
             </td>
             <td>
               <form method="POST" action="/homepage/tasks/delete">
-                  <input type="hidden" name="slug" value=this.slug>
+                  <input type="hidden" name="slug" value={{this.slug}}>
                   <button type="submit">
                     <i class="fa-solid fa-circle-minus"></i>
                   </button>

@@ -1,4 +1,7 @@
-<form method="POST" action="/homepage/admin/tests/create">
+<h1>
+  Add test for {{task_name}}
+</h1>
+<form method="POST" action="/homepage/tests/create">
   <div class="mb-3">
     <label for="input" class="form-label">Input</label>
     <input
@@ -20,5 +23,8 @@
     />
   </div>
   <input type="hidden" name="slug" value={{slug}}>
+  <input type="hidden" name="task_name" value={{task_name}}>
   <button type="submit">Add Test</button>
+  
 </form>
+<button type="button" class="mt-4 bg-white"><a href="/homepage" class="text-dark">Back to home</a></button>

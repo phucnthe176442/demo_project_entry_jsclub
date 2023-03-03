@@ -44,8 +44,10 @@ class TaskController {
   // [POST] /homepage/tasks/delete
   del(req, res, next) {
     if (req.session.user) {
-      res.json(req.body.slug);
-      // res.redirect("/homepage/admin");
+      Task.findOneAndDelete({ slug: req.body.slug }).then((task) => {
+        res.redirect("/homepage");
+      });
+
     } else {
       res.redirect("/");
     }
