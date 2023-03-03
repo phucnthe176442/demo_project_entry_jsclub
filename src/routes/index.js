@@ -30,7 +30,6 @@ function route(app) {
         if (username === "admin" && password === "1") {
           req.session.user = username;
           req.session.admin = true;
-          console.log('user: ' + req.session.user + ' admin: ' + req.session.admin);
         }
         else if (
           users.length === 1 &&
@@ -39,7 +38,6 @@ function route(app) {
         ) {
           req.session.user = username;
           req.session.admin = false;
-          console.log('user: ' + req.session.user + ' admin: ' + req.session.admin);
         } else {
           res.send("Invalid username or password");
         }

@@ -32,6 +32,9 @@ app.engine(
   "hbs",
   engine({
     extname: ".hbs",
+    helpers: {
+      // shortenDate(date) {return date.toLocaleString()},
+    }
   })
 );
 app.set("view engine", "hbs");
