@@ -5,16 +5,10 @@ class AdminController {
   // [GET] /
   index(req, res) {
     if (req.session.user) {
-      Task.find({})
+      Task.find({}).lean()
         .then((tasks) => {
-          tasks = tasks.map((tasks) => tasks.toObject());
-
-          Submission.find({ })
+          Submission.find({}).lean()
             .then((submissions) => {
-              submissions = submissions.map((submissions) =>
-                submissions.toObject()
-              );
-              // res.json(submissions);
               res.render("admin", {
                 username: req.session.user,
                 tasks,

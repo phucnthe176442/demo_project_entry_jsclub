@@ -1,24 +1,24 @@
-<form method="POST" action="/homepage/admin/tests/create" enctype="multipart/form-data">
+<form method="POST" action="/homepage/admin/tests/create">
   <div class="mb-3">
-    <label for="formGroupExampleInput" class="form-label">Input</label>
+    <label for="input" class="form-label">Input</label>
     <input
       type="text"
       name="input"
       class="form-control"
-      id="formGroupExampleInput"
+      id="input"
       placeholder="Enter input"
     />
   </div>
   <div class="mb-3">
-    <label for="formGroupExampleInput2" class="form-label">Output</label>
+    <label for="output" class="form-label">Output</label>
     <input
       type="number"
       name="output"
       class="form-control"
-      id="formGroupExampleInput2"
+      id="output"
       placeholder="Enter output"
     />
   </div>
-  <input type="hidden" name="slug">
+  <input type="hidden" name="slug" value={{slug}}>
   <button type="submit">Add Test</button>
 </form>

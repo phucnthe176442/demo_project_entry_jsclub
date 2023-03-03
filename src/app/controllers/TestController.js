@@ -1,10 +1,13 @@
 const Task = require("../models/Task");
 
 class TestController {
-    //[GET] homepage/admin/tests/showCreate
+    //[GET] homepage/admin/tests/:slug/showCreate
   showCreate(req, res, next) {
     if(req.session.user) {
-        res.render("createTest", { username: req.session.user });
+        console.log(req.params.slug);
+        res.render("createTest", {
+          slug: req.params.slug,
+        });
     } else 
         res.redirect("/");
   }
