@@ -7,5 +7,6 @@ router.use("/create", userController.create);
 router.use("/show", userController.show)
 router.use("/showAll", userController.index)
 router.use("/delete", userController.del)
+router.use("/", (req, res) => res.redirect('/homepage'))
 
 module.exports = router;
