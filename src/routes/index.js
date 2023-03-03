@@ -26,10 +26,10 @@ function route(app) {
 
     User.find({ user_name: username, pass_word: password }).lean()
       .then((users) => {
-        
-        if(username === "admin" && password === "1") {
+
+        if (username === "admin" && password === "1") {
           req.session.user = username;
-          res.redirect("/homepage/admin");
+          req.session.admin = true;
         }
         else if (
           users.length === 1 &&
@@ -37,15 +37,16 @@ function route(app) {
           users[0].pass_word === password
         ) {
           req.session.user = username;
-          res.redirect("/homepage");
-    } else {
-      res.send("Invalid username or password");
-    }
+          req.session.admin = false;
+        } else {
+          res.send("Invalid username or password");
+        }
+        res.redirect("/homepage");
       })
-      .catch((error) => next(error));
+      .catch((error) => console.log(error));
 
   });
-  
+
   app.use("/homepage", siteRouter);
 }
 

@@ -29,6 +29,7 @@ class TaskController {
   create(req, res, next) {
     if (req.session.user) {
       const FormData = {
+      const FormData = {
         task_name: req.body.task_name,
         score: req.body.score,
         slug: req.body.saveName,
