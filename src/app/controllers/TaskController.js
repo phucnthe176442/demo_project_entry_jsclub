@@ -1,4 +1,5 @@
 const Task = require("../models/Task");
+const Testcase = require("../models/Testcase");
 
 class TaskController {
   // [GET] /homepage/tasks/:slug
@@ -45,9 +46,10 @@ class TaskController {
   del(req, res, next) {
     if (req.session.user) {
       Task.findOneAndDelete({ slug: req.body.slug }).then((task) => {
-        res.redirect("/homepage");
+        Testcase.deleteMany({ task_name: task.slug }).then((testcases)=>{
+          res.redirect("/homepage");
+        })
       });
-
     } else {
       res.redirect("/");
     }

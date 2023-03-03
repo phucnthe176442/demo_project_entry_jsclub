@@ -2,31 +2,45 @@ const Task = require("../models/Task");
 const Testcase = require("../models/Testcase");
 
 class TestController {
-    //[GET] homepage/tests/:slug/showCreate
+  //[GET] homepage/tests/:slug/showCreate
   showCreate(req, res, next) {
-    if(req.session.user) {
-        console.log(req.params.slug);
+    if (req.session.user) {
+      console.log(req.params.slug);
+      Testcase.find({ task_name: req.params.slug }).lean().then((testcases) => {
         res.render("createTest", {
+          username: req.session.user,
           slug: req.params.slug,
-          task_name: req.params.task_name,
+          tests: testcases,
         });
-    } else 
-        res.redirect("/");
+      })
+        .catch(next)
+    } else
+      res.redirect("/");
   }
 
   //[POST] homepage/tests/create
   create(req, res, next) {
-    if(req.session.user) {
-        let formData = {
-          task_name: req.body.slug,
-          input: req.body.input,
-          output: req.body.output,
-        }
-        let testcase = new Testcase(formData);
-        testcase.save();
-        res.redirect("/homepage/tests/"+req.body.slug+"/"+req.body.task_name+"/showCreate");
-    } else 
-        res.redirect("/");
+    if (req.session.user) {
+      let formData = {
+        task_name: req.body.slug,
+        input: req.body.input,
+        output: req.body.output,
+      }
+      let testcase = new Testcase(formData);
+      testcase.save();
+      res.redirect("/homepage/tests/" + req.body.slug + "/showCreate");
+    } else
+      res.redirect("/");
+  }
+
+  // [POST] /homepage/tests/delete
+  del(req, res, next) {
+    if (req.session.user) {
+      Testcase.findOneAndDelete({_id: req.body._id}).then((test)=>{
+        res.redirect("/homepage/tests/" + req.body.slug + "/showCreate");
+      }) 
+    } else
+      res.redirect("/");
   }
 }
 
