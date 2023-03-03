@@ -8,7 +8,7 @@ class TaskController {
       Task.findOne({ slug: req.params.slug })
         .lean()
         .then((task) => {
-          //res.json(task)
+          // res.json(task)
           res.render("submit", { username: req.session.user, task });
         })
         .catch(next);
