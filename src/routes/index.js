@@ -24,14 +24,13 @@ function route(app) {
 
     // TODO: check the credentials in the database
 
-    User.find({ user_name: username, pass_word: password }).lean()
+    User.find({ user_name: username, pass_word: password })
+      .lean()
       .then((users) => {
-
         if (username === "admin" && password === "1") {
           req.session.user = username;
           req.session.admin = true;
-        }
-        else if (
+        } else if (
           users.length === 1 &&
           users[0].user_name === username &&
           users[0].pass_word === password
@@ -44,7 +43,6 @@ function route(app) {
         res.redirect("/homepage");
       })
       .catch((error) => console.log(error));
-
   });
 
   app.use("/homepage", siteRouter);

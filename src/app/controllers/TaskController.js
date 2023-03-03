@@ -25,10 +25,9 @@ class TaskController {
     }
   }
 
-  // [POST] /homepage/admin/tasks/create/
+  // [POST] /homepage/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
-      const FormData = {
       const FormData = {
         task_name: req.body.task_name,
         score: req.body.score,
@@ -36,16 +35,17 @@ class TaskController {
       };
       let task = new Task(FormData);
       task.save();
-      res.redirect("/homepage/admin");
+      res.redirect("/homepage");
     } else {
       res.redirect("/");
     }
   }
 
-  // [GET] /homepage/admin/tasks/delete
+  // [POST] /homepage/tasks/delete
   del(req, res, next) {
     if (req.session.user) {
-      res.redirect("/homepage/admin");
+      res.json(req.body.slug);
+      // res.redirect("/homepage/admin");
     } else {
       res.redirect("/");
     }
