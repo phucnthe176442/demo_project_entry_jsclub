@@ -1,7 +1,7 @@
 const Task = require("../models/Task");
 
 class TestController {
-    //[GET] homepage/admin/tests/:slug/showCreate
+    //[GET] homepage/tests/showCreate
   showCreate(req, res, next) {
     if(req.session.user) {
         console.log(req.params.slug);
@@ -12,7 +12,7 @@ class TestController {
         res.redirect("/");
   }
 
-  //[POST] homepage/admin/tests/create
+  //[POST] homepage/tests/create
   create(req, res, next) {
     if(req.session.user) {
         res.redirect("/homepage/admin");

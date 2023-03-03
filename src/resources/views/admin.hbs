@@ -35,25 +35,26 @@
             </td>
             <td>{{this.score}}</td>
             <td>
-              <a href="/homepage/admin/tests/{{this.slug}}/showCreate">
+              <a href="/homepage/tests/showCreate">
                 <button>
                   <i class="fa-regular fa-plus"></i>
                 </button>
               </a>
             </td>
             <td>
-              <a href="/homepage/admin/tasks/delete">
-                <button>
-                  <i class="fa-solid fa-circle-minus"></i>
-                </button>
-              </a>
+              <form method="POST" action="/homepage/tasks/delete">
+                  <input type="hidden" name="slug" value=this.slug>
+                  <button type="submit">
+                    <i class="fa-solid fa-circle-minus"></i>
+                  </button>
+              </form>
             </td>
           </tr>
         {{/each}}
       </tbody>
     </table>
     <button>
-      <a href="/homepage/admin/tasks/showCreate">
+      <a href="/homepage/tasks/showCreate">
         Add Task
       </a>
     </button>

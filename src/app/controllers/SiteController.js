@@ -7,19 +7,20 @@ class SiteController {
     if (req.session.user) {
       Task.find({}).lean()
         .then((tasks) => {
-          // tasks = tasks.map((tasks) => tasks.toObject());
-
-          Submission.find({ user_name: req.session.user }).lean().sort({createAt: "desc"})
+          Submission.find({ user_name: req.session.user }).lean().sort({ createAt: "desc" })
             .then((submissions) => {
-              // submissions = submissions.map((submissions) =>
-              //   submissions.toObject()
-              // );
-              // res.json(submissions);
-              res.render("home", {
-                username: req.session.user,
-                tasks,
-                submissions
-              });
+              if (!req.session.admin)
+                res.render("home", {
+                  username: req.session.user,
+                  tasks,
+                  submissions
+                });
+              else if (req.session.admin)
+                res.render("admin", {
+                  username: req.session.user,
+                  tasks,
+                  submissions
+                });
             })
             .catch((error) => next(error));
         })
