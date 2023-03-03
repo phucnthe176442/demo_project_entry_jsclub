@@ -1,4 +1,5 @@
 const Task = require("../models/Task");
+const Testcase = require("../models/Testcase");
 
 class TaskController {
   // [GET] /homepage/tasks/:slug
@@ -7,7 +8,7 @@ class TaskController {
       Task.findOne({ slug: req.params.slug })
         .lean()
         .then((task) => {
-          //res.json(task)
+          // res.json(task)
           res.render("submit", { username: req.session.user, task });
         })
         .catch(next);
@@ -25,18 +26,30 @@ class TaskController {
     }
   }
 
-  // sau khi upload ve tasks chuyen sang binary roi luu vao database
-  // [POST] /homepage/admin/tasks/create/
+  // [POST] /homepage/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
-      FormData = {
+      const FormData = {
         task_name: req.body.task_name,
         score: req.body.score,
-        slug: req.body.saveName
-      }
+        slug: req.body.saveName,
+      };
       let task = new Task(FormData);
       task.save();
       res.redirect("/homepage");
+    } else {
+      res.redirect("/");
+    }
+  }
+
+  // [POST] /homepage/tasks/delete
+  del(req, res, next) {
+    if (req.session.user) {
+      Task.findOneAndDelete({ slug: req.body.slug }).then((task) => {
+        Testcase.deleteMany({ task_name: task.slug }).then((testcases)=>{
+          res.redirect("/homepage");
+        })
+      });
     } else {
       res.redirect("/");
     }

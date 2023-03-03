@@ -1,0 +1,25 @@
+<div class="ranking">
+  <ul class="ranking_categories">
+    <li class="rank_rank">#</li>
+    <li class="username_rank">Name</li>
+    <li class="username_rank">Mail</li>
+    <li class="score">Score</li>
+    <li class="score">Delete</li>
+  </ul>
+
+  {{#each users}}
+  <ul class="ranking_content">
+    <li class="rank_rank">{{@index}}</li>
+    <li class="username_rank">{{this.user_name}}</li>
+    <li class="username_rank">{{this.email}}</li>
+    <li class="score">{{this.score}}</li>
+    <form action="/homepage/users/delete" method="post">
+      <input type="hidden" name="user_name" value="{{this.user_name}}">
+      <li class="score"><button type="submit"><i class="fa-solid fa-circle-minus"></i></button></li>
+    </form>
+  </ul>
+  {{/each}}
+  <ul class="ranking_end">
+  </ul>
+  <a href="/homepage/users/show"><button type="submit">Add more</button></a>
+</div>

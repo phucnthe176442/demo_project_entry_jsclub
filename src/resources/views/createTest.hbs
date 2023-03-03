@@ -1,0 +1,29 @@
+<h1>
+  Add test for {{slug}}
+</h1>
+<form method="POST" action="/homepage/tests/create">
+  <div class="mb-3">
+    <label for="input" class="form-label">Input</label>
+    <input type="text" name="input" class="form-control" id="input" placeholder="Enter input" />
+  </div>
+  <div class="mb-3">
+    <label for="output" class="form-label">Output</label>
+    <input type="number" name="output" class="form-control" id="output" placeholder="Enter output" />
+  </div>
+  <input type="hidden" name="slug" value={{slug}}>
+  <button type="submit">Add Test</button>
+</form>
+  
+<button type="button" class="mt-4 bg-white mb-4"><a href="/homepage" class="text-dark">Back to home</a></button>
+
+<ul class="list-group list-group-horizontal-md">
+  {{#each tests}}
+  <li class="list-group-item mr-4">
+    <form method="post" action="/homepage/tests/delete">
+      <input type="hidden" name="_id" value={{this._id}}>
+      <input type="hidden" name="slug" value={{this.task_name}}>
+      <button type="submit">Test {{@index}} <i class="fa-solid fa-circle-minus"></i></a></button>
+    </form>
+  </li>
+  {{/each}}
+</ul>

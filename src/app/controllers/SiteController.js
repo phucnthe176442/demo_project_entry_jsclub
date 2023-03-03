@@ -3,26 +3,30 @@ const Submission = require("../models/Submission");
 
 class SiteController {
   // [GET] /
-  index(req, res) {
+  index(req, res, next) {
     if (req.session.user) {
       Task.find({}).lean()
         .then((tasks) => {
-          Submission.find({ user_name: req.session.user }).lean().sort({ createAt: "desc" })
-            .then((submissions) => {
-              if (!req.session.admin)
+          if (!req.session.admin)
+            Submission.find({ user_name: req.session.user }).sort({ createAt: 'desc' }).lean()
+              .then((submissions) => {
                 res.render("home", {
                   username: req.session.user,
                   tasks,
                   submissions
                 });
-              else if (req.session.admin)
+              })
+              .catch(next)
+          else if (req.session.admin)
+            Submission.find({}).sort({ createAt: 'desc' }).lean()
+              .then((submissions) => {
                 res.render("admin", {
                   username: req.session.user,
                   tasks,
                   submissions
                 });
-            })
-            .catch((error) => next(error));
+              })
+              .catch(next)
         })
         .catch((error) => next(error));
     } else {

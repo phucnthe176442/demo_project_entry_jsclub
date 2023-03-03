@@ -6,7 +6,6 @@ const fs = require("fs");
 const axios = require("axios");
 const qs = require("qs");
 
-
 async function compile(code, testcase) {
   let sendData = qs.stringify({
     code: code,
@@ -28,7 +27,7 @@ async function compile(code, testcase) {
       return res.data.output;
     })
     .catch(function (err) {
-      console.log('err: ' + err);
+      console.log("err: " + err);
     });
 }
 
@@ -60,17 +59,27 @@ async function checkTest(code, testcases, req) {
 }
 function addPoint(status, req) {
   if (status == "Accepted")
-    Submission.find({ user_name: req.session.user, slug: req.body.task_slug, status: "Accepted" }).lean()
-      .then((submission) => {
-        if (submission.length == 0)
-          Task.findOne({ slug: req.body.task_slug }).lean()
+    Submission.find({
+      user_name: req.session.user,
+      slug: req.body.task_slug,
+      status: "Accepted",
+    })
+      .lean()
+      .then((submissions) => {
+        if (submissions.length == 0)
+          Task.findOne({ slug: req.body.task_slug })
+            .lean()
             .then((task) => {
-              User.findOne({ user_name: req.session.user }).lean()
+              User.findOne({ user_name: req.session.user })
+                .lean()
                 .then((user) => {
-                  User.findOneAndUpdate({ user_name: req.session.user }, { score: (user.score + task.score) });
-                })
-            })
-      })
+                  User.findOneAndUpdate(
+                    { user_name: req.session.user },
+                    { score: user.score + task.score }
+                  );
+                });
+            });
+      });
 }
 
 class SubmitController {
@@ -84,8 +93,9 @@ class SubmitController {
       Testcase.find({ task_name: req.body.task_slug })
         .lean()
         .then(async (testcases) => {
-          await checkTest(code, testcases, req)
-            .then((status) => addPoint(status, req));
+          await checkTest(code, testcases, req).then((status) =>
+            addPoint(status, req)
+          );
           res.redirect("/homepage");
         })
         .catch((error) => next(error));

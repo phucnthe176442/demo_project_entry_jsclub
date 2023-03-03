@@ -14,6 +14,7 @@ let storage = multer.diskStorage({
     },
 });
 let upload = multer({ storage: storage });
+router.use("/delete", taskController.del);
 router.use("/create", upload.single("task_description"), taskController.create);
 router.use("/showCreate", taskController.showCreate)
 router.use("/:slug", taskController.index);
