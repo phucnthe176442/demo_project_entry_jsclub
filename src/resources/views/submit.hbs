@@ -10,10 +10,31 @@
 
   <div class="submit">
     <form method="post" action="/homepage/submit" enctype="multipart/form-data">
-        <input type="hidden" value='{{task.task_name}}' name="task_name">
-        <input type="hidden" value='{{task.slug}}' name="task_slug">
-        <input type="file" id="solution" name="solution"><br>
-        <button type="submit">Submit</button><br>     
+      <input type="hidden" value='{{task.task_name}}' name="task_name">
+      <input type="hidden" value='{{task.slug}}' name="task_slug">
+      <input type="file" id="solution" name="solution" required accept=".c"><br>
+      <button type="submit">Submit</button><br>
     </form>
   </div>
 </div>
+<script>
+  var uploadField = document.getElementById("solution");
+  var myFile = "";
+  uploadField.onchange = function () {
+    if (this.files[0].size > 2097152) {
+      alert("File is too big!");
+      this.value = "";
+    };
+    myFile = this.files[0].name;
+    console.log(myFile);
+    var upld = myFile.split('.').pop();
+    if (upld == 'c') {
+      alert("File uploaded is pdf")
+    } else {
+      alert("Only C file are allowed");
+      this.value = "";
+    }
+  };
+
+
+</script>

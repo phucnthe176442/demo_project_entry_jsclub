@@ -14,7 +14,11 @@
           <input type="password" name="password" required="" />
           <label>Password</label>
         </div>
-
+        {{#if notLogin}}
+        <div class="alert alert-primary" role="alert">
+          Invalid username or password!
+        </div>
+        {{/if}}
         <br /><br />
 
         <div class="remember-me--forget-password">

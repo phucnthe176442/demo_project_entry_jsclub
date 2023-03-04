@@ -1,5 +1,5 @@
 <header class="header">
-  <form method="post">
+  <form method="post" action="/homepage/users/updateName">
     <div class="popup_change_username">
       <div class="change_username">
         <p>Username Setting</p>
@@ -13,14 +13,14 @@
         </div>
 
         <div class="btns">
-          <button id="cancel_username">Cancel</button>
           <button id="confirm" type="submit" name="typeFunction" value="2">Confirm</button>
+          <button id="cancel_username">Cancel</button>        
         </div>
       </div>
     </div>
   </form>
 
-  <form method="post">
+  <form method="post" action="/homepage/users/updatePass">
     <div class="popup_change_password">
       <div class="change_password">
         <p>Password Setting</p>
@@ -34,8 +34,8 @@
         </div>
 
         <div class="btns">
-          <button id="cancel_password">Cancel</button>
           <button id="confirm" type="submit" name="typeFunction" value="1">Confirm</button>
+          <button id="cancel_password">Cancel</button>
         </div>
       </div>
     </div>
@@ -64,6 +64,7 @@
             <a class="nav-link" href="/ranking">Ranking</a>
           </li>
         </ul>
+        {{#if username}}
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
 
@@ -84,7 +85,7 @@
             </ul>
           </li>
         </ul>
-
+        {{/if}}
       </div>
     </div>
   </nav>

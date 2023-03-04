@@ -16,7 +16,7 @@ function route(app) {
   );
 
   app.get("/", (req, res) => {
-    res.render("login");
+    res.render("login", {username: false, notLogin: false});
   });
 
   app.post("/", (req, res) => {
@@ -30,13 +30,15 @@ function route(app) {
         if (username === "admin" && password === "1") {
           req.session.user = username;
           req.session.admin = true;
-        } else if (users.user_name === username && users.pass_word === password) {
+          res.redirect("/homepage");
+        } else if (users && users.user_name === username && users.pass_word === password) {
           req.session.user = username;
           req.session.admin = false;
+          res.redirect("/homepage");
         } else {
-          res.send("Invalid username or password");
+          res.render("login", {username: false, notLogin: true});
         }
-        res.redirect("/homepage");
+        
       })
       .catch((error) => console.log(error));
   });

@@ -4,11 +4,11 @@
 <form method="POST" action="/homepage/tests/create">
   <div class="mb-3">
     <label for="input" class="form-label">Input</label>
-    <input type="text" name="input" class="form-control" id="input" placeholder="Enter input" />
+    <input type="text" name="input" class="form-control" id="input" placeholder="Enter input" required/>
   </div>
   <div class="mb-3">
     <label for="output" class="form-label">Output</label>
-    <input type="number" name="output" class="form-control" id="output" placeholder="Enter output" />
+    <input type="number" name="output" class="form-control" id="output" placeholder="Enter output" required/>
   </div>
   <input type="hidden" name="slug" value={{slug}}>
   <button type="submit">Add Test</button>
