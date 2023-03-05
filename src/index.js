@@ -34,9 +34,7 @@ app.engine(
   "hbs",
   engine({
     extname: ".hbs",
-    helpers: {
-      // shortenDate(date) {return date.toLocaleString()},
-    }
+    helpers: require('./config/db/handlebars-helpers'),
   })
 );
 app.set("view engine", "hbs");
