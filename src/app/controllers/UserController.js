@@ -67,10 +67,13 @@ class UserController {
       User.find({ user_name: req.body.new_username }).then((users) => {
         if (users.length == 0)
           User.findOneAndUpdate({ user_name: req.body.old_username }, { user_name: req.body.new_username }).then((user) => {
-            Submission.updateMany({ user_name: req.body.old_username }, { user_name: req.body.new_username }).then((submissions) => {
-              req.session.user = req.body.new_username;
-              res.redirect("/homepage");
-            })
+            if (user)
+              Submission.updateMany({ user_name: req.body.old_username }, { user_name: req.body.new_username }).then((submissions) => {
+                req.session.user = req.body.new_username;
+                res.redirect("/homepage");
+              })
+            else
+              res.send('Can not find username')
           });
         else
           res.send('Username cannot be duplicated')
