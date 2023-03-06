@@ -9,6 +9,7 @@ const Submission = new Schema({
   slug: { type: String },
   createAt: { type: Date, default: Date.now },
   updateAt: { type: Date, default: Date.now },
+  code: { type: String }
 }, {
   timestamps: true
 });
