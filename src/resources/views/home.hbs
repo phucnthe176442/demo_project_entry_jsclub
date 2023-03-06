@@ -52,7 +52,7 @@
           <input type="submit" name="btnHomeTask" value="<<" />
           <input type="submit" name="btnPreTask" value="<" />
         {{/if}}
-        {{#displayPageTask pageTask.totalPage}}{{/displayPageTask}}
+        {{#displayPageTask pageTask.pageStart pageTask.pageEnd}}{{/displayPageTask}}
         {{#if taskEnd}}
           <input type="submit" name="btnNextTask" value=">" />
           <input type="submit" name="btnEndTask" value=">>" />
@@ -94,7 +94,7 @@
         <input type="submit" name="btnHome" value="<<" />
         <input type="submit" name="btnPre" value="<" />
       {{/if}}
-      {{#displayPageSubmission page.totalPage}}{{/displayPageSubmission}}
+      {{#displayPageSubmission page.pageStart page.pageEnd}}{{/displayPageSubmission}}
       {{#if subEnd}}
         <input type="submit" name="btnNext" value=">" />
         <input type="submit" name="btnEnd" value=">>" />
