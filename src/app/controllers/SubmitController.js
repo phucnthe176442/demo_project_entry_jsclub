@@ -48,6 +48,7 @@ async function checkTest(code, testcases, req) {
   var status = "Wrong answer";
   if (correct == testcases.length) status = "Accepted";
   var FormData = {
+    code: req.body.code,
     user_name: req.session.user,
     task_name: req.body.task_name,
     status: status,
@@ -91,7 +92,7 @@ class SubmitController {
     if (req.session.user) {
       let code =
         '#include<stdio.h> \nint main(){printf("Hello World");return 0;}';
-      code = fs.readFileSync("./src/public/solutions/solution.c");
+      code = fs.readFileSync("./src/public/solutions/"+req.body.code+".c");
 
       Testcase.find({ task_name: req.body.task_slug })
         .lean()

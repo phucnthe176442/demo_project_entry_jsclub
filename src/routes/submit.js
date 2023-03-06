@@ -9,7 +9,8 @@ let storage = multer.diskStorage({
     cb(null, "./src/public/solutions");
   },
   filename: (req, file, cb) => {
-    cb(null, "solution.c");
+    req.body.code = req.session.user + '_' + Date.now();
+    cb(null, req.body.code+".c");
   },
 });
 let upload = multer({ storage: storage });

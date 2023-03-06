@@ -10,10 +10,10 @@ module.exports = {
         let list = "";
         if (isAdmin)
             for (let i = begin; i < end + 1; i++)
-                list += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + submissions[i].createAt + "</td><td>" + submissions[i].user_name + "</td><td> <a href='/homepage/tasks/" + submissions[i].slug + "'>" + submissions[i].task_name + "</a></td><td>" + submissions[i].status + "</td></tr>";
+                list += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + submissions[i].createAt + "</td><td>" + submissions[i].user_name + "</td><td> <a href='/homepage/tasks/" + submissions[i].slug + "'>" + submissions[i].task_name + "</a></td><td>" + submissions[i].status + "</td><td><a href='./solutions/"+submissions[i].code+".c'><i class='fa-solid fa-eye'></i></a></td></tr>";
         else
             for (let i = begin; i < end + 1; i++)
-                list += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + submissions[i].createAt + "</td><td> <a href='/homepage/tasks/" + submissions[i].slug + "'>" + submissions[i].task_name + "</a></td><td>" + submissions[i].status + "</td></tr>";
+                list += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + submissions[i].createAt + "</td><td> <a href='/homepage/tasks/" + submissions[i].slug + "'>" + submissions[i].task_name + "</a></td><td>" + submissions[i].status + "</td><td><a href='./solutions/"+submissions[i].code+".c'><i class='fa-solid fa-eye'></i></a></td></tr>";
         return list;
     },
     displayPageTask: function (pageStart, pageEnd) {
