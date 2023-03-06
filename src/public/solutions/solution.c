@@ -26,8 +26,8 @@ long long Func(int n) {
 int main() {
 	int n,i;
 
-	scanf("%d",&n);
-printf("%lld", Func(n));
+	scanf("%d", &n);
+	printf("%d", n);
     
 }
 
