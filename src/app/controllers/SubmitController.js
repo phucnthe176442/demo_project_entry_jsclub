@@ -74,11 +74,12 @@ function addPoint(status, req) {
                 .lean()
                 .then((user) => {
                   console.log("-1");
-                  let scoreNew = user.score + task.score;
-                  User.findOneAndUpdate(
-                    { user_name: req.session.user },
-                    { score: scoreNew }
-                  );
+                  User.findOne(
+                    { user_name: req.session.user }
+                  ).then((user) => {
+                    user.score += task.score;
+                    user.save();
+                  });
                 });
             });
       });
