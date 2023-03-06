@@ -2,7 +2,7 @@ const Task = require("../models/Task");
 const Submission = require("../models/Submission");
 
 class Paging {
-  constructor(n, nrpp, index, totalPage, begin, end) {
+  constructor(n, nrpp, index, totalPage, begin, end, pageStart, pageEnd) {
     this.n = n;
     this.nrpp = n > 10 ? 10 : n;
     this.totalPage = Math.floor((n + this.nrpp - 1) / this.nrpp);
@@ -23,6 +23,8 @@ class Paging {
       this.index = req.body.btnIndex - 1;
     this.begin = this.index * this.nrpp;
     this.end = ((this.begin + this.nrpp - 1 > this.n) ? (this.n - 1) : (this.begin + this.nrpp - 1)); //ket thuc tai end
+    this.pageStart = this.index - 2 < 0 ? 0 : this.index - 2;
+    this.pageEnd = this.index + 2 > this.totalPage-1 ? this.totalPage - 1 : this.index + 2;
   }
   calculatePageTask(req) {
     this.index = 0;
@@ -40,6 +42,8 @@ class Paging {
       this.index = req.body.btnIndexTask - 1;
     this.begin = this.index * this.nrpp;
     this.end = (this.begin + this.nrpp - 1 > this.n) ? (this.n - 1) : (this.begin + this.nrpp - 1); //ket thuc tai end
+    this.pageStart = this.index - 2 < 0 ? 0 : this.index - 2;
+    this.pageEnd = this.index + 2 > this.totalPage-1 ? this.totalPage - 1 : this.index + 2;
   }
 }
 function getSubmissions(req) {

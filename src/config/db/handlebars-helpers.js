@@ -1,7 +1,7 @@
 module.exports = {
-    displayPageSubmission: function (totalPage) {
+    displayPageSubmission: function (pageStart, pageEnd) {
         let list = "";
-        for (let i = 0; i < totalPage; i++) {
+        for (let i = pageStart; i < pageEnd+1; i++) {
             list += "<input type='submit' name='btnIndex' value='" + (i + 1) + "'></input>";
         }
         return list;
@@ -16,9 +16,9 @@ module.exports = {
                 list += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + submissions[i].createAt + "</td><td> <a href='/homepage/tasks/" + submissions[i].slug + "'>" + submissions[i].task_name + "</a></td><td>" + submissions[i].status + "</td></tr>";
         return list;
     },
-    displayPageTask: function (totalPage) {
+    displayPageTask: function (pageStart, pageEnd) {
         let list = "";
-        for (let i = 0; i < totalPage; i++) {
+        for (let i = pageStart; i < pageEnd+1; i++) {
             list += "<input type='submit' name='btnIndexTask' value='" + (i + 1) + "'></input>";
         }
         return list;
