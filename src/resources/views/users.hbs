@@ -1,25 +1,64 @@
-<div class="ranking">
-   <a href="/homepage/users/show"><button class="btn_addmore" type="submit" >Add more</button></a>
-  <ul class="ranking_categories">
+<div class="ranking" style="overflow-x: auto;">
+  <a href="/homepage/users/show"><button class="btn_addmore" type="submit">Add
+      more</button></a>
+  {{! <ul class="ranking_categories">
     <li class="rank_rank">#</li>
     <li class="username_rank">Name</li>
     <li class="username_rank">Mail</li>
     <li class="score">Score</li>
     <li class="score">Delete</li>
-  </ul>
+  </ul> }}
 
-  {{#each users}}
-  <ul class="ranking_content">
-    <li class="rank_rank">{{@index}}</li>
-    <li class="username_rank">{{this.user_name}}</li>
-    <li class="username_rank">{{this.email}}</li>
-    <li class="score">{{this.score}}</li>
-    <form action="/homepage/users/delete" method="post">
-      <input type="hidden" name="user_name" value="{{this.user_name}}">
-      <li class="score"><button type="submit"><i class="fa-solid fa-circle-minus"></i></button></li>
-    </form>
-  </ul>
-  {{/each}}
+  <div class="ranking_table" style="overflow-x: auto;">
+    <table>
+      <tr class="ranking_categories">
+        <th class="rank_rank">#</th>
+        <th class="username_rank">Name</th>
+        <th class="username_rank">Mail</th>
+        <th class="score">Score</th>
+        <th class="score">Delete</th>
+      </tr>
+      {{#each users}}
+        <tr class="ranking_content">
+          <td class="rank_rank">{{@index}}</td>
+          <td class="username_rank">{{this.user_name}}</td>
+          <td class="username_rank">{{this.email}}</td>
+          <td class="score">{{this.score}}</td>
+          <td class="score"><form action="/homepage/users/delete" method="post">
+              <input
+                type="hidden"
+                name="user_name"
+                value="{{this.user_name}}"
+              />
+              <button onclick="checkDelete()" type="submit"><i
+                  class="fa-solid fa-circle-minus"
+                ></i></button>
+            </form></td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+
+  {{!-- {{#each users}}
+    <ul class="ranking_content">
+      <li class="rank_rank">{{@index}}</li>
+      <li class="username_rank">{{this.user_name}}</li>
+      <li class="username_rank">{{this.email}}</li>
+      <li class="score">{{this.score}}</li>
+      <form action="/homepage/users/delete" method="post">
+        <input type="hidden" name="user_name" value="{{this.user_name}}" />
+        <li class="score"><button type="submit"><i
+              class="fa-solid fa-circle-minus"
+            ></i></button></li>
+      </form>
+    </ul>
+  {{/each}} --}}
   <ul class="ranking_end">
+    
   </ul>
 </div>
+<script>
+    function checkDelete(){ var a = confirm("are you sure?"); if(a) {
+    window.location.href='/homepage/tasks/delete'; } }
+
+  </script>

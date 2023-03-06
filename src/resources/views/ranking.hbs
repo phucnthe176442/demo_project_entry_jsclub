@@ -1,17 +1,33 @@
 <div class="ranking">
-  <ul class="ranking_categories">
+  {{!-- <ul class="ranking_categories">
     <li class="rank_rank">Rank</li>
     <li class="username_rank">Username</li>
     <li class="score">Score</li>
-  </ul>
+  </ul> --}}
 
-  {{#each users}}
+<div class="ranking_table" style="overflow-x: auto;">
+    <table>
+      <tr class="ranking_categories">
+        <th class="rank_rank">#</th>
+        <th class="username_rank">Name</th>
+        <th class="score">Score</th>
+      </tr>
+      {{#each users}}
+        <tr class="ranking_content">
+          <td class="rank_rank">{{@index}}</td>
+          <td class="username_rank">{{this.user_name}}</td>
+          <td class="score">{{this.score}}</td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+  {{!-- {{#each users}}
     <ul class="ranking_content">
       <li class="rank_rank">{{@index}}</li>
       <li class="username_rank">{{this.user_name}}</li>
       <li class="score">{{this.score}}</li>
     </ul>
-  {{/each}}
+  {{/each}} --}}
   <ul class="ranking_end">
   </ul>
 </div>

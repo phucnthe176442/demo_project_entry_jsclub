@@ -3,7 +3,7 @@
 
     <div class="task-table task-table_small">
       <h1> Problem Set </h1>
-      <table class="table">
+      <table class="table home_problem_list">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -21,7 +21,7 @@
           }}{{/tasksTable}}
         </tbody>
       </table>
-      <form action="/homepage" method="post">
+      <form action="/homepage" method="post" class="pagination">
         <input
           type="hidden"
           min="0"
@@ -38,8 +38,8 @@
           <input type="submit" name="btnHomeTask" value="<<" />
           <input type="submit" name="btnPreTask" value="<" />
         {{/if}}
-        {{#displayPageTask
-          pageTask.pageStart pageTask.pageEnd
+          {{#displayPageTask
+          pageTask.pageStart pageTask.pageEnd pageTask.index
         }}{{/displayPageTask}}
         {{#if taskEnd}}
           <input type="submit" name="btnNextTask" value=">" />
@@ -60,7 +60,7 @@
   </div>
   <div class="submission-table">
     <h1>Submissions</h1>
-    <table class="table">
+    <table class="table home_submission_list">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -78,7 +78,7 @@
         }}{{/submissionsTable}}
       </tbody>
     </table>
-    <form action="/homepage" method="post">
+    <form action="/homepage" method="post" class="pagination">
       <input type="hidden" min="0" name="index" value={{page.index}} />
       <input type="hidden" min="0" name="totalPage" value={{page.totalPage}} />
       {{#if subHome}}
@@ -86,12 +86,22 @@
         <input type="submit" name="btnPre" value="<" />
       {{/if}}
       {{#displayPageSubmission
-        page.pageStart page.pageEnd
+        page.pageStart page.pageEnd page.index
       }}{{/displayPageSubmission}}
       {{#if subEnd}}
         <input type="submit" name="btnNext" value=">" />
         <input type="submit" name="btnEnd" value=">>" />
       {{/if}}
     </form>
+    <div style="height:10em">
+
+    </div>
   </div>
+  <div class="page_increase"style="height: 50em">
+  </div>
+  <script>
+    function checkDelete(){ var a = confirm("are you sure?"); if(a) {
+    window.location.href='/homepage/tasks/delete'; } }
+
+  </script>
 </div>
