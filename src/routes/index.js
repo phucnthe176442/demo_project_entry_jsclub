@@ -1,10 +1,13 @@
 const rankingRouter = require("./ranking");
 const siteRouter = require("./site");
+const errorRouter = require("./error");
 const session = require("express-session");
 const User = require("../app/models/User");
 
 function route(app) {
   app.get("/ranking", rankingRouter);
+
+  app.use("/error", errorRouter);
 
   app.use(
     session({

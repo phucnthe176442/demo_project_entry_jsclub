@@ -31,11 +31,9 @@ class UserController {
   create(req, res, next) {
     if (req.session.user) {
       User.find({}).then((users) => {
-        if (users.length == 30){
-          res.send("Cannot add more user, try delete old users");
-          setTimeout(redirect('/homepage'), 5*1000);
-        }
-        else {
+        if (users.length == 30) {
+          res.redirect("/error/Cannot add more user, try delete old users");
+        } else {
           let FormData = {
             user_name: req.body.user_name,
             score: 0,
@@ -70,22 +68,24 @@ class UserController {
   updateName(req, res, next) {
     if (req.session.user) {
       User.find({ user_name: req.body.new_username }).then((users) => {
-        if (users.length == 0)
-          User.findOneAndUpdate(
-            { user_name: req.body.old_username },
-            { user_name: req.body.new_username }
-          ).then((user) => {
-            if (user)
-              Submission.updateMany(
-                { user_name: req.body.old_username },
-                { user_name: req.body.new_username }
-              ).then((submissions) => {
-                req.session.user = req.body.new_username;
-                res.redirect("/homepage");
-              });
-            else res.send("Can not find username");
-          });
-        else res.send("Username cannot be duplicated");
+        if (users.length == 0) {
+          if (req.body.old_username == req.session.user) {
+            User.findOneAndUpdate(
+              { user_name: req.body.old_username },
+              { user_name: req.body.new_username }
+            ).then((user) => {
+              if (user) {
+                Submission.updateMany(
+                  { user_name: req.body.old_username },
+                  { user_name: req.body.new_username }
+                ).then((submissions) => {
+                  req.session.user = req.body.new_username;
+                  res.redirect("/homepage");
+                });
+              } else res.redirect("/error/Can not find username");
+            });
+          } else res.redirect("/error/Wrong old username");
+        } else res.redirect("/error/Username can not be duplicated");
       });
     } else {
       res.redirect("/");
@@ -100,7 +100,7 @@ class UserController {
       ).then((user) => {
         if (user) res.redirect("/homepage");
         else {
-          res.send("Wrong old password");
+          res.redirect("/error/Wrong old password");
         }
       });
     } else {

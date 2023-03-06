@@ -1,20 +1,6 @@
 <div class="content-homepage">
   <div class="content-homepage_small">
-    {{#if isAdmin}}
-      <div class="userFunction userFunction_small">
-        <button>
-          <a href="/homepage/users/showAll">
-            Show Users
-          </a>
-        </button>
-        <br />
-        <button>
-          <a href="/homepage/users/show">
-            Add User
-          </a>
-        </button>
-      </div>
-    {{/if}}
+
     <div class="task-table task-table_small">
       <h1> Problem Set </h1>
       <table class="table">
@@ -52,18 +38,23 @@
           <input type="submit" name="btnHomeTask" value="<<" />
           <input type="submit" name="btnPreTask" value="<" />
         {{/if}}
-        {{#displayPageTask pageTask.pageStart pageTask.pageEnd}}{{/displayPageTask}}
+        {{#displayPageTask
+          pageTask.pageStart pageTask.pageEnd
+        }}{{/displayPageTask}}
         {{#if taskEnd}}
           <input type="submit" name="btnNextTask" value=">" />
           <input type="submit" name="btnEndTask" value=">>" />
         {{/if}}
       </form>
       {{#if isAdmin}}
-        <button>
+        <div class="userFunction userFunction_small mt-4">
           <a href="/homepage/tasks/showCreate">
-            Add Task
+            <button class="mt-3">Add Task</button>
           </a>
-        </button>
+          <a href="/homepage/users/showAll">
+            <button class="mt-3">Show Users</button>
+          </a>
+        </div>
       {{/if}}
     </div>
   </div>
@@ -79,6 +70,7 @@
           {{/if}}
           <th scope="col">Task</th>
           <th scope="col">Status</th>
+          <th scope="col">View</th>
         </tr>
       </thead>
       <tbody>
@@ -94,7 +86,9 @@
         <input type="submit" name="btnHome" value="<<" />
         <input type="submit" name="btnPre" value="<" />
       {{/if}}
-      {{#displayPageSubmission page.pageStart page.pageEnd}}{{/displayPageSubmission}}
+      {{#displayPageSubmission
+        page.pageStart page.pageEnd
+      }}{{/displayPageSubmission}}
       {{#if subEnd}}
         <input type="submit" name="btnNext" value=">" />
         <input type="submit" name="btnEnd" value=">>" />

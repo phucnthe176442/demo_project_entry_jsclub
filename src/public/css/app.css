@@ -505,8 +505,9 @@ iframe {
 
 .userFunction {
   display: flex;
-  flex-direction: column;
-  align-items: center; }
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around; }
 
 .userFunction button {
   width: 100%;

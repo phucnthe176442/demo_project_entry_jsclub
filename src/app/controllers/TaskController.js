@@ -29,14 +29,20 @@ class TaskController {
   // [POST] /homepage/tasks/create/
   create(req, res, next) {
     if (req.session.user) {
-      const FormData = {
-        task_name: req.body.task_name,
-        score: req.body.score,
-        slug: req.body.saveName,
-      };
-      let task = new Task(FormData);
-      task.save();
-      res.redirect("/homepage");
+      Task.find({}).then((tasks) => {
+        if (tasks.length == 50) {
+          res.redirect("/error/Cannot add more task, try delete old tasks");
+        } else {
+          const FormData = {
+            task_name: req.body.task_name,
+            score: req.body.score,
+            slug: req.body.saveName,
+          };
+          let task = new Task(FormData);
+          task.save();
+          res.redirect("/homepage");
+        }
+      });
     } else {
       res.redirect("/");
     }
@@ -46,9 +52,9 @@ class TaskController {
   del(req, res, next) {
     if (req.session.user) {
       Task.findOneAndDelete({ slug: req.body.slug }).then((task) => {
-        Testcase.deleteMany({ task_name: task.slug }).then((testcases)=>{
+        Testcase.deleteMany({ task_name: task.slug }).then((testcases) => {
           res.redirect("/homepage");
-        })
+        });
       });
     } else {
       res.redirect("/");
