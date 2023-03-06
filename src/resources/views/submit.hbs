@@ -28,9 +28,7 @@
     myFile = this.files[0].name;
     console.log(myFile);
     var upld = myFile.split('.').pop();
-    if (upld == 'c') {
-      alert("File uploaded is pdf")
-    } else {
+    if (upld != 'c')  {
       alert("Only C file are allowed");
       this.value = "";
     }

@@ -26,9 +26,7 @@
     myFile = this.files[0].name;
     console.log(myFile);
     var upld = myFile.split('.').pop();
-    if (upld == 'pdf') {
-      alert("File uploaded is pdf")
-    } else {
+    if (upld != 'pdf') {
       alert("Only PDF are allowed");
       this.value = "";;
     }
