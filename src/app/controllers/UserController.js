@@ -82,16 +82,8 @@ class UserController {
               ).then((submissions) => {
                 req.session.user = req.body.new_username;
                 res.redirect("/homepage");
-<<<<<<< HEAD
-              })
-            else{
-              res.send('Can not find username');
-              setTimeout(res.redirect('/homepage'), 5*1000);
-            }
-=======
               });
             else res.send("Can not find username");
->>>>>>> 7e3fd1c76b1674deee22a0146fa8730ff1ed460e
           });
         else res.send("Username cannot be duplicated");
       });

@@ -16,7 +16,7 @@ function route(app) {
   );
 
   app.get("/", (req, res) => {
-    res.render("login", { username: false, notLogin: false });
+    res.render("login", { username: false, notLogin: req.notLogin });
   });
 
   app.post("/", (req, res) => {
@@ -34,7 +34,9 @@ function route(app) {
             req.session.admin = false;
             res.redirect("/homepage");
           } else {
-            res.render("login", { username: false, notLogin: true });
+            req.notLogin=true;
+            res.redirect('/');
+            // res.render("login", { username: false, notLogin: true });
           }
         })
         .catch((error) => console.log(error));
