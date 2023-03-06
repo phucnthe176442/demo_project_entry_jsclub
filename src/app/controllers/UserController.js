@@ -31,8 +31,10 @@ class UserController {
   create(req, res, next) {
     if (req.session.user) {
       User.find({}).then((users) => {
-        if (users.length == 30)
+        if (users.length == 30){
           res.send("Cannot add more user, try delete old users");
+          setTimeout(redirect('/homepage'), 5*1000);
+        }
         else {
           let FormData = {
             user_name: req.body.user_name,
@@ -56,7 +58,6 @@ class UserController {
       User.findOneAndDelete({ user_name: req.body.user_name }).then((user) => {
         res.redirect("/homepage/users/showAll");
       });
-
     } else {
       res.redirect("/");
     }
@@ -72,8 +73,10 @@ class UserController {
                 req.session.user = req.body.new_username;
                 res.redirect("/homepage");
               })
-            else
-              res.send('Can not find username')
+            else{
+              res.send('Can not find username');
+              setTimeout(res.redirect('/homepage'), 5*1000);
+            }
           });
         else
           res.send('Username cannot be duplicated')

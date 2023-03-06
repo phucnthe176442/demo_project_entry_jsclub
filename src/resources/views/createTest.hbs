@@ -18,7 +18,7 @@
 
 <ul class="list-group list-group-horizontal-md">
   {{#each tests}}
-  <li class="list-group-item mr-4">
+  <li class="list-group-item mr-4" title='{{this.input}}=>{{this.output}}'>
     <form method="post" action="/homepage/tests/delete">
       <input type="hidden" name="_id" value={{this._id}}>
       <input type="hidden" name="slug" value={{this.task_name}}>

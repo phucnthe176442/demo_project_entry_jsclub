@@ -21,7 +21,7 @@
   var uploadField = document.getElementById("solution");
   var myFile = "";
   uploadField.onchange = function () {
-    if (this.files[0].size > 2097152) {
+    if (this.files[0].size > 2*1024*1024) {
       alert("File is too big!");
       this.value = "";
     };
@@ -29,7 +29,7 @@
     console.log(myFile);
     var upld = myFile.split('.').pop();
     if (upld == 'c') {
-      alert("File uploaded is pdf")
+      {{!-- alert("File uploaded is c") --}}
     } else {
       alert("Only C file are allowed");
       this.value = "";

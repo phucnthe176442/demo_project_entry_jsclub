@@ -5,13 +5,13 @@
   <div class="Right_side">
     <div class="login-box">
       <h2>Login</h2>
-      <form method="post" action="/" id="form">
+      <form method="post" action="/">
         <div class="user-box">
-          <input type="text" name="username" required="" id="username" {{#if block}}disabled{{/if}}/>
+          <input type="text" name="username" required="" />
           <label>Username</label>
         </div>
         <div class="user-box">
-          <input type="password" name="password" required="" id="password" {{#if block}}disabled{{/if}}/>
+          <input type="password" name="password" required="" />
           <label>Password</label>
         </div>
         {{#if notLogin}}
@@ -19,25 +19,17 @@
           Invalid username or password!
         </div>
         {{/if}}
-        {{#if block}}
-        <div class="alert alert-primary" role="alert">
-          You will be blocked for 15 minutes
+        <br/><br/>
+        <div class="remember-me--forget-password">
+          <label>
+            <input type="checkbox" name="item" checked />
+            <span class="text-checkbox">Remember me</span>
+          </label>
         </div>
-        {{/if}}
-        <br /><br />
-
-        <button type="submit" id="submitButton" {{#if block}}disabled{{/if}}>
+        <button type="submit">
           Submit
         </button>
       </form>
     </div>
   </div>
 </div>
-<script>
-  if(block){
-    document.getElementById('form').disabled=true;
-    document.getElementById('username').disabled=true;
-    document.getElementById('password').disabled=true;
-    document.getElementById('form').disabled=true;
-  }
-</script>
