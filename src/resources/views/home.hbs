@@ -1,59 +1,71 @@
 <div class="content-homepage">
-  {{#if isAdmin}}
-  <div class="userFunction">
-    <button>
-      <a href="/homepage/users/showAll">
-        Show Users
-      </a>
-    </button>
-    <br />
-    <button>
-      <a href="/homepage/users/show">
-        Add User
-      </a>
-    </button>
-  </div>
-  {{/if}}
-  <div class="task-table">
-    <h1> Problem Set </h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Task Name</th>
-          <th scope="col">Score</th>
-          {{#if isAdmin}}
-          <th scope="col">Test</th>
-          <th scope="col">Del</th>
-          {{/if}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#tasksTable tasks pageTask.begin pageTask.end isAdmin}}
-        {{/tasksTable}}
-      </tbody>
-    </table>
-    <form action="/homepage" method="post">
-      <input type="hidden" min=0 name="indexTask" value={{pageTask.index}}>
-      <input type="hidden" min=0 name="totalPageTask" value={{pageTask.totalPage}}>
-      {{#if taskHome}}
-      <input type="submit" name="btnHomeTask" value="<<">
-      <input type="submit" name="btnPreTask" value="<">
-      {{/if}}
-      {{#displayPageTask pageTask.pageStart pageTask.pageEnd}}
-      {{/displayPageTask}}
-      {{#if taskEnd}}
-      <input type="submit" name="btnNextTask" value=">">
-      <input type="submit" name="btnEndTask" value=">>">
-      {{/if}}
-    </form>
+  <div class="content-homepage_small">
     {{#if isAdmin}}
-    <button>
-      <a href="/homepage/tasks/showCreate">
-        Add Task
-      </a>
-    </button>
+      <div class="userFunction userFunction_small">
+        <button>
+          <a href="/homepage/users/showAll">
+            Show Users
+          </a>
+        </button>
+        <br />
+        <button>
+          <a href="/homepage/users/show">
+            Add User
+          </a>
+        </button>
+      </div>
     {{/if}}
+    <div class="task-table task-table_small">
+      <h1> Problem Set </h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Score</th>
+            {{#if isAdmin}}
+              <th scope="col">Test</th>
+              <th scope="col">Del</th>
+            {{/if}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#tasksTable
+            tasks pageTask.begin pageTask.end isAdmin
+          }}{{/tasksTable}}
+        </tbody>
+      </table>
+      <form action="/homepage" method="post">
+        <input
+          type="hidden"
+          min="0"
+          name="indexTask"
+          value={{pageTask.index}}
+        />
+        <input
+          type="hidden"
+          min="0"
+          name="totalPageTask"
+          value={{pageTask.totalPage}}
+        />
+        {{#if taskHome}}
+          <input type="submit" name="btnHomeTask" value="<<" />
+          <input type="submit" name="btnPreTask" value="<" />
+        {{/if}}
+        {{#displayPageTask pageTask.pageStart pageTask.pageEnd}}{{/displayPageTask}}
+        {{#if taskEnd}}
+          <input type="submit" name="btnNextTask" value=">" />
+          <input type="submit" name="btnEndTask" value=">>" />
+        {{/if}}
+      </form>
+      {{#if isAdmin}}
+        <button>
+          <a href="/homepage/tasks/showCreate">
+            Add Task
+          </a>
+        </button>
+      {{/if}}
+    </div>
   </div>
   <div class="submission-table">
     <h1>Submissions</h1>
@@ -63,29 +75,29 @@
           <th scope="col">#</th>
           <th scope="col">When</th>
           {{#if isAdmin}}
-          <th scope="col">User Name</th>
+            <th scope="col">User Name</th>
           {{/if}}
           <th scope="col">Task</th>
           <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#submissionsTable submissions page.begin page.end isAdmin}}
-        {{/submissionsTable}}
+        {{#submissionsTable
+          submissions page.begin page.end isAdmin
+        }}{{/submissionsTable}}
       </tbody>
     </table>
     <form action="/homepage" method="post">
-      <input type="hidden" min=0 name="index" value={{page.index}}>
-      <input type="hidden" min=0 name="totalPage" value={{page.totalPage}}>
+      <input type="hidden" min="0" name="index" value={{page.index}} />
+      <input type="hidden" min="0" name="totalPage" value={{page.totalPage}} />
       {{#if subHome}}
-      <input type="submit" name="btnHome" value="<<">
-      <input type="submit" name="btnPre" value="<">
+        <input type="submit" name="btnHome" value="<<" />
+        <input type="submit" name="btnPre" value="<" />
       {{/if}}
-      {{#displayPageSubmission page.pageStart page.pageEnd}}
-      {{/displayPageSubmission}}
+      {{#displayPageSubmission page.pageStart page.pageEnd}}{{/displayPageSubmission}}
       {{#if subEnd}}
-      <input type="submit" name="btnNext" value=">">
-      <input type="submit" name="btnEnd" value=">>">
+        <input type="submit" name="btnNext" value=">" />
+        <input type="submit" name="btnEnd" value=">>" />
       {{/if}}
     </form>
   </div>
