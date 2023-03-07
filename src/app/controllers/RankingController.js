@@ -1,7 +1,7 @@
 const User = require("../models/User");
 
 class RankingController {
-  // [GET] /
+  // [GET] /homepage/ranking
   index(req, res) {
     User.find({}).lean()
       .sort({ score: 'desc' } )

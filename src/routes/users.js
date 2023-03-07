@@ -3,12 +3,12 @@ const router = express.Router();
 
 const userController = require("../app/controllers/UserController");
 
-router.use("/create", userController.create);
-router.use("/show", userController.show)
-router.use("/showAll", userController.index)
-router.use("/delete", userController.del)
-router.use("/updateName", userController.updateName)
-router.use("/updatePass", userController.updatePass)
-router.use("/", (req, res) => res.redirect('/homepage'))
+router.post("/create", userController.create);
+router.get("/show", userController.show);
+router.get("/showAll", userController.index);
+router.post("/delete", userController.del);
+router.post("/updateName", userController.updateName);
+router.post("/updatePass", userController.updatePass);
+router.use("/", (req, res) => res.redirect("/homepage"));
 
 module.exports = router;

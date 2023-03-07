@@ -75,9 +75,7 @@ function addPoint(status, req) {
                 .lean()
                 .then((user) => {
                   console.log("-1");
-                  User.findOne(
-                    { user_name: req.session.user }
-                  ).then((user) => {
+                  User.findOne({ user_name: req.session.user }).then((user) => {
                     user.score += task.score;
                     user.save();
                   });
@@ -89,16 +87,14 @@ function addPoint(status, req) {
 class SubmitController {
   // [POST] /homepage/submit
   createSubmission(req, res, next) {
-    if(req.wrongFile){
-      res.redirect('/error/Something is wrong with your file');
-    }
-    else if(req.file.size > 2 * 1024 * 1024){
-      res.redirect('/error/File is too big');
-    }
-    else if (req.session.user) {
+    if (req.wrongFile) {
+      res.redirect("/error/Something is wrong with your file");
+    } else if (req.file.size > 2 * 1024 * 1024) {
+      res.redirect("/error/File is too big");
+    } else if (req.session.user) {
       let code =
         '#include<stdio.h> \nint main(){printf("Hello World");return 0;}';
-      code = fs.readFileSync("./src/public/solutions/"+req.body.code+".c");
+      code = fs.readFileSync("./src/public/solutions/" + req.body.code + ".c");
 
       Testcase.find({ task_name: req.body.task_slug })
         .lean()

@@ -3,9 +3,9 @@ const router = express.Router();
 
 const testController = require("../app/controllers/TestController");
 
-router.use("/create", testController.create);
-router.use("/delete", testController.del);
-router.use("/:slug/showCreate", testController.showCreate)
-
+router.post("/create", testController.create);
+router.post("/delete", testController.del);
+router.get("/:slug/showCreate", testController.showCreate);
+router.use("/", (req, res) => res.redirect("/error/404 not-found"));
 
 module.exports = router;

@@ -27,22 +27,34 @@ class UserController {
     }
   }
 
-  // [POST] /homepage/users/create/
+  // [POST] /homepage/users/create
   create(req, res, next) {
     if (req.session.user) {
+      let validUsername = req.body.user_name.replace(/[^a-zA-Z0-9]+/g, "");
+      if (validUsername === "admin")
+        res.redirect("/error/Can not create another admin");
+      if (validUsername.length < req.body.user_name.length)
+        res.redirect("/error/Invalid username");
       User.find({}).then((users) => {
         if (users.length == 30) {
           res.redirect("/error/Cannot add more user, try delete old users");
         } else {
-          let FormData = {
-            user_name: req.body.user_name,
-            score: 0,
-            email: req.body.email,
-            pass_word: "1",
-          };
-          let user = new User(FormData);
-          user.save();
-          res.redirect("/homepage/users/showAll");
+          User.findOne({ user_name: validUsername })
+            .lean()
+            .then((user) => {
+              if (user) res.redirect("/error/Duplicated username");
+              else {
+                let FormData = {
+                  user_name: req.body.user_name,
+                  score: 0,
+                  email: req.body.email,
+                  pass_word: "1",
+                };
+                let user = new User(FormData);
+                user.save();
+                res.redirect("/homepage/users/showAll");
+              }
+            });
         }
       });
     } else {
@@ -64,12 +76,18 @@ class UserController {
       res.redirect("/");
     }
   }
+
   // [POST] /homepage/users/updateName
   updateName(req, res, next) {
     if (req.session.user) {
+      if (req.session.user === "admin")
+        res.redirect("/error/Can not change admin username");
       User.find({ user_name: req.body.new_username }).then((users) => {
         if (users.length == 0) {
           if (req.body.old_username == req.session.user) {
+            let validName = req.body.new_username.replace(/[^a-zA-Z0-9]+/g, "");
+            if (validName.length < req.body.new_username.length)
+              res.redirect("/error/Invalid name, must be alphabet, number");
             User.findOneAndUpdate(
               { user_name: req.body.old_username },
               { user_name: req.body.new_username }
@@ -91,15 +109,30 @@ class UserController {
       res.redirect("/");
     }
   }
+
   // [POST] /homepage/users/updatePass
   updatePass(req, res, next) {
     if (req.session.user) {
+      if (req.session.user === "admin")
+        res.redirect("/error/Can change admin password");
       User.findOneAndUpdate(
         { user_name: req.session.user, pass_word: req.body.old_password },
         { pass_word: req.body.new_password }
       ).then((user) => {
-        if (user) res.redirect("/homepage");
-        else {
+        if (user) {
+          let validPassword = req.body.new_password.replace(
+            /[^a-zA-Z0-9]+/g,
+            ""
+          );
+          if (validPassword.length < req.body.new_password.length) {
+            User.findOneAndUpdate(
+              { user_name: req.session.user, pass_word: req.body.new_password },
+              { pass_word: req.body.old_password }
+            ).then((user) => {
+              res.redirect("/error/Invalid password");
+            });
+          } else res.redirect("/homepage");
+        } else {
           res.redirect("/error/Wrong old password");
         }
       });
