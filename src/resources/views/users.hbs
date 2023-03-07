@@ -30,7 +30,7 @@
                 name="user_name"
                 value="{{this.user_name}}"
               />
-              <button onclick="checkDelete()" type="submit"><i
+              <button type="submit"><i
                   class="fa-solid fa-circle-minus"
                 ></i></button>
             </form></td>
@@ -54,11 +54,11 @@
     </ul>
   {{/each}} --}}
   <ul class="ranking_end">
-    
+
   </ul>
 </div>
 <script>
-    function checkDelete(){ var a = confirm("are you sure?"); if(a) {
-    window.location.href='/homepage/tasks/delete'; } }
+  function checkDelete(){ var a = confirm("are you sure?"); if(a) {
+  window.location.href='/homepage/tasks/delete'; } }
 
-  </script>
+</script>

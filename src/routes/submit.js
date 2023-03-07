@@ -14,6 +14,6 @@ let storage = multer.diskStorage({
   },
 });
 let upload = multer({ storage: storage });
-router.use("/", upload.single("solution"), SubmitController.createSubmission);
+router.post("/", upload.single("solution"), SubmitController.createSubmission);
 
 module.exports = router;

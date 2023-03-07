@@ -12,6 +12,6 @@ router.use("/submit", submitRouter);
 router.use("/tasks", taskRouter);
 router.use("/tests", testRouter);
 router.use("/users", userRouter);
-router.use("/", siteController.index);
+router.get("/", siteController.index);
 
 module.exports = router;
