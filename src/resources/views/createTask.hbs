@@ -1,7 +1,8 @@
-<form method="POST" action="/homepage/tasks/create" enctype="multipart/form-data">
+<h2 class="mx-auto mt-5">Create a new problem</h2>
+<form method="POST" action="/homepage/tasks/create" enctype="multipart/form-data" class="w-75 mx-auto mt-5">
   <div class="mb-3">
     <label for="task_name" class="form-label">Task Name</label>
-    <input type="text" name="task_name" class="form-control" id="task_name" placeholder="Enter task name" required />
+    <input maxlength="30" type="text" name="task_name" class="form-control" id="task_name" placeholder="Enter task name" required />
   </div>
   <div class="mb-3">
     <label for="task_description" class="form-label">Task Description</label>
@@ -10,7 +11,7 @@
   </div>
   <div class="mb-3">
     <label for="score" class="form-label">Score</label>
-    <input type="number" name="score" class="form-control" id="score" placeholder="Enter score" required />
+    <input min="10" max="1000" type="number" name="score" class="form-control" id="score" placeholder="Enter score" required />
   </div>
 
   <button type="submit">Add Task</button>

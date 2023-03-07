@@ -1,7 +1,7 @@
-<h1>
+<h2 class="w-75 mx-auto mt-5">
   Add test for {{slug}}
-</h1>
-<form method="POST" action="/homepage/tests/create">
+</h2>
+<form method="POST" action="/homepage/tests/create" class="w-75 mx-auto mt-5">
   <div class="mb-3">
     <label for="input" class="form-label">Input</label>
     <input type="text" name="input" class="form-control" id="input" placeholder="Enter input" required/>
@@ -12,17 +12,18 @@
   </div>
   <input type="hidden" name="slug" value={{slug}}>
   <button type="submit">Add Test</button>
+  <button type="button" class="mt-4 bg-white mb-4 bbacktohome"><a href="/homepage" class="text-dark">Back to home</a></button>
 </form>
   
-<button type="button" class="mt-4 bg-white mb-4 bbacktohome"><a href="/homepage" class="text-dark">Back to home</a></button>
 
-<ul class="list-group list-group-horizontal-md test_list_all">
+
+<ul class="list-group list-group-horizontal-md test_list_all mx-auto">
   {{#each tests}}
   <li class="list-group-item mr-4 test_list" title='{{this.input}}=>{{this.output}}'>
     <form method="post" action="/homepage/tests/delete">
       <input type="hidden" name="_id" value={{this._id}}>
       <input type="hidden" name="slug" value={{this.task_name}}>
-      <button onclick="checkDelete()" type="submit">Test {{@index}} <i class="fa-solid fa-circle-minus"></i></a></button>
+      <button type="submit">Test {{@index}} <i class="fa-solid fa-circle-minus"></i></a></button>
     </form>
   </li>
   {{/each}}

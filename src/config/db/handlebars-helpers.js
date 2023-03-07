@@ -37,7 +37,7 @@ module.exports = {
             for (let i = begin; i < end + 1; i++) {
                 list += "<tr class='problem_item'><th scope='row'>" + (i + 1) + "</th><td> <a href='/homepage/tasks/" + tasks[i].slug + "'>" + tasks[i].task_name + "</a></td><td>" + tasks[i].score + "</td>";
                 list += "<td class='problem_info'><a href='/homepage/tests/" + tasks[i].slug + "/showCreate'><button><i class='fa-regular fa-plus'></i></button></a></td>";
-                list += "<td class='problem_info'><form method='POST' action='/homepage/tasks/delete'><input type='hidden' name='slug' value=" + tasks[i].slug + "><button onclick='checkDelete()' type='submit'><i class='fa-solid fa-circle-minus'></i></button></form></td></tr>"
+                list += "<td class='problem_info'><form method='POST' action='/homepage/tasks/delete'><input type='hidden' name='slug' value=" + tasks[i].slug + "><button type='submit'><i class='fa-solid fa-circle-minus'></i></button></form></td></tr>"
             }
         else
             for (let i = begin; i < end + 1; i++) {

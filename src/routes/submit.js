@@ -10,10 +10,22 @@ let storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     req.body.code = req.session.user + '_' + Date.now();
-    cb(null, req.body.code+".c");
+    cb(null, req.body.code + ".c");
   },
 });
-let upload = multer({ storage: storage });
+let upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 2 * 1024 * 1024,
+  },
+  fileFilter: function (req, file, cb) {
+    if (file.mimetype !== 'c') {
+      req.wrongFile = true;
+      return cb(null, false, new Error('Wrong file type'));
+    }
+    cb(null, true);
+  }
+});
 router.use("/", upload.single("solution"), SubmitController.createSubmission);
 
 module.exports = router;
