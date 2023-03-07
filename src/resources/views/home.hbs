@@ -10,51 +10,41 @@
             <th scope="col">Task Name</th>
             <th scope="col">Score</th>
             {{#if isAdmin}}
-              <th scope="col">Test</th>
-              <th scope="col">Del</th>
+            <th scope="col">Test</th>
+            <th scope="col">Del</th>
             {{/if}}
           </tr>
         </thead>
         <tbody>
           {{#tasksTable
-            tasks pageTask.begin pageTask.end isAdmin
+          tasks pageTask.begin pageTask.end isAdmin
           }}{{/tasksTable}}
         </tbody>
       </table>
       <form action="/homepage" method="post" class="pagination">
-        <input
-          type="hidden"
-          min="0"
-          name="indexTask"
-          value={{pageTask.index}}
-        />
-        <input
-          type="hidden"
-          min="0"
-          name="totalPageTask"
-          value={{pageTask.totalPage}}
-        />
+        <input type="hidden" min="0" name="indexTask" value={{pageTask.index}} />
+        <input type="hidden" min="0" name="totalPageTask" value={{pageTask.totalPage}} />
         {{#if taskHome}}
-          <input type="submit" name="btnHomeTask" value="<<" />
-          <input type="submit" name="btnPreTask" value="<" />
+        <input type="submit" name="btnHomeTask" value="<<" />
+        <input type="submit" name="btnPreTask" value="<" />
         {{/if}}
-          {{#displayPageTask
-          pageTask.pageStart pageTask.pageEnd pageTask.index
+        {{#displayPageTask
+        pageTask.pageStart pageTask.pageEnd pageTask.index
         }}{{/displayPageTask}}
         {{#if taskEnd}}
-          <input type="submit" name="btnNextTask" value=">" />
-          <input type="submit" name="btnEndTask" value=">>" />
+        <input type="submit" name="btnNextTask" value=">" />
+        <input type="submit" name="btnEndTask" value=">>" />
         {{/if}}
       </form>
       {{#if isAdmin}}
-        <div class="userFunction userFunction_small mt-4">
-          <a href="/homepage/tasks/showCreate">
-            <button class="mt-3">Add Task</button>
-          </a>
-          <a href="/homepage/users/showAll">
-            <button class="mt-3">Show Users</button>
-          </a>
-        </div>
+      <div class="userFunction userFunction_small mt-4">
+        <a href="/homepage/tasks/showCreate">
+          <button class="mt-3">Add Task</button>
+        </a>
+        <a href="/homepage/users/showAll">
+          <button class="mt-3">Show Users</button>
+        </a>
+      </div>
       {{/if}}
     </div>
   </div>
@@ -66,7 +56,7 @@
           <th scope="col">#</th>
           <th scope="col">When</th>
           {{#if isAdmin}}
-            <th scope="col">User Name</th>
+          <th scope="col">User Name</th>
           {{/if}}
           <th scope="col">Task</th>
           <th scope="col">Status</th>
@@ -75,7 +65,7 @@
       </thead>
       <tbody>
         {{#submissionsTable
-          submissions page.begin page.end isAdmin
+        submissions page.begin page.end isAdmin
         }}{{/submissionsTable}}
       </tbody>
     </table>
@@ -83,26 +73,28 @@
       <input type="hidden" min="0" name="index" value={{page.index}} />
       <input type="hidden" min="0" name="totalPage" value={{page.totalPage}} />
       {{#if subHome}}
-        <input type="submit" name="btnHome" value="<<" />
-        <input type="submit" name="btnPre" value="<" />
+      <input type="submit" name="btnHome" value="<<" />
+      <input type="submit" name="btnPre" value="<" />
       {{/if}}
       {{#displayPageSubmission
-        page.pageStart page.pageEnd page.index
+      page.pageStart page.pageEnd page.index
       }}{{/displayPageSubmission}}
       {{#if subEnd}}
-        <input type="submit" name="btnNext" value=">" />
-        <input type="submit" name="btnEnd" value=">>" />
+      <input type="submit" name="btnNext" value=">" />
+      <input type="submit" name="btnEnd" value=">>" />
       {{/if}}
     </form>
     <div style="height:10em">
 
     </div>
   </div>
-  <div class="page_increase"style="height: 50em">
+  <div class="page_increase" style="height: 50em">
   </div>
   <script>
-    function checkDelete(){ var a = confirm("are you sure?"); if(a) {
-    window.location.href='/homepage/tasks/delete'; } }
-
+    function checkDelete() {
+      let a = confirm('Are you sure?');
+      console.log(a);
+      return a;
+    }
   </script>
 </div>
